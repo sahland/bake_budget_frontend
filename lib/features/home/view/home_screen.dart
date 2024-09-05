@@ -18,7 +18,12 @@ class _HomeScreenState extends State<HomeScreen> {
 
     return AutoTabsRouter(
       duration: const Duration(microseconds: 250),
-      routes: const [ProductsRoute(), IngredientsRoute(), ProfileRoute(),],
+      routes: const [
+        ProductsRoute(),
+        IngredientsRoute(),
+        ListRoute(),
+        ProfileRoute(),
+      ],
       builder: (context, child) {
         final tabsRouter = AutoTabsRouter.of(context);
         return Scaffold(
@@ -47,9 +52,14 @@ class _HomeScreenState extends State<HomeScreen> {
                 enableFeedback: false,
                 type: BottomNavigationBarType.fixed,
                 items: [
-                  _buildNavBarItem(theme, './assets/icons/cake_icon.svg', 0, tabsRouter),
-                  _buildNavBarItem(theme, './assets/icons/ingredients_icon.svg', 1, tabsRouter),
-                  _buildNavBarItem(theme, './assets/icons/profile_icon.svg', 2, tabsRouter),
+                  _buildNavBarItem(
+                      theme, './assets/icons/cake_icon.svg', 0, tabsRouter),
+                  _buildNavBarItem(theme, './assets/icons/ingredients_icon.svg',
+                      1, tabsRouter),
+                  _buildNavBarItem(
+                      theme, './assets/icons/list_icon.svg', 2, tabsRouter),
+                  _buildNavBarItem(
+                      theme, './assets/icons/profile_icon.svg', 3, tabsRouter),
                 ],
               ),
             ),
@@ -59,25 +69,26 @@ class _HomeScreenState extends State<HomeScreen> {
     );
   }
 
-BottomNavigationBarItem _buildNavBarItem(ThemeData theme, String path, int index, TabsRouter tabsRouter) {
+  BottomNavigationBarItem _buildNavBarItem(
+      ThemeData theme, String path, int index, TabsRouter tabsRouter) {
     return BottomNavigationBarItem(
-      icon: GestureDetector(
-        onTap: () => _openPage(index, tabsRouter),
-        child: SvgPicture.asset(
-          path,
-          width: 38,
-          height: 38,
-          colorFilter: ColorFilter.mode(theme.secondaryHeaderColor, BlendMode.srcIn),
+        icon: GestureDetector(
+          onTap: () => _openPage(index, tabsRouter),
+          child: SvgPicture.asset(
+            path,
+            width: 38,
+            height: 38,
+            colorFilter:
+                ColorFilter.mode(theme.secondaryHeaderColor, BlendMode.srcIn),
+          ),
         ),
-      ),
-      activeIcon: SvgPicture.asset(
-        path,
-        width: 42,
-        height: 42,
-        colorFilter: ColorFilter.mode(theme.primaryColor, BlendMode.srcIn),
-      ),
-      label: ''
-    );
+        activeIcon: SvgPicture.asset(
+          path,
+          width: 42,
+          height: 42,
+          colorFilter: ColorFilter.mode(theme.primaryColor, BlendMode.srcIn),
+        ),
+        label: '');
   }
 
   void _openPage(int index, TabsRouter tabsRouter) {
