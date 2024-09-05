@@ -17,7 +17,8 @@ class AppBarReorder extends StatelessWidget {
   Widget build(BuildContext context) {
     return IconButton(
       onPressed: () {
-        ThemeInherited.of(context).switchThemeMode();
+        //ThemeInherited.of(context).switchThemeMode();
+        Scaffold.of(context).openDrawer();
       },
       icon: SvgPicture.asset(
         './assets/icons/reorder.svg',

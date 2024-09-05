@@ -21,15 +21,15 @@ abstract class DarkColorPalette {
 
   static const black = Colors.black;
 
-  static const lightPink = Color(0xFFFF7269);
+  static const darkScaffold = Color(0xFF2E2527);
 
-  static const darkGreen = Color(0xFF16683B);
+  static const blueberry = Color(0xFF5CA1E2);
 
-  static const darkScaffold = Color(0xFF2C2F38);
+  static const darkBrown = Color(0xFF24171A);
 
   static const textGrey = Color(0xFF686F82);
 
-  static const darkGrey = Color(0xFF252830);
+  static const darkPurple = Color(0xFF3D373D);
 
   static const blackBanner = Color(0xFF353842);
 }

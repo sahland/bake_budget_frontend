@@ -28,7 +28,7 @@ abstract class AppThemeData {
           surface: _darkColorScheme.surface),
       scaffoldBackgroundColor: _darkColorScheme.background,
       secondaryHeaderColor: _darkColorScheme.secondary,
-      cardColor: _darkColorScheme.dialogBackgroundColor,
+      cardColor: _darkColorScheme.inactive,
       primaryColor: _darkColorScheme.primary,
       textTheme:
           TextTheme(bodyMedium: TextStyle(color: _darkColorScheme.textField)),

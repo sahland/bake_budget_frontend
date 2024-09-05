@@ -33,14 +33,14 @@ class AppColorScheme extends ThemeExtension<AppColorScheme> {
         dialogBackgroundColor = LightColorPalette.lightChokoBrown;
 
   const AppColorScheme.dark()
-      : primary = DarkColorPalette.lightPink,
+      : primary = DarkColorPalette.blueberry,
         secondary = DarkColorPalette.white,
         surface = DarkColorPalette.blackBanner,
         background = DarkColorPalette.darkScaffold,
         textField = DarkColorPalette.white,
         textField2 = DarkColorPalette.textGrey,
-        inactive = DarkColorPalette.darkGreen,
-        dialogBackgroundColor = DarkColorPalette.darkGrey;
+        inactive = DarkColorPalette.darkBrown,
+        dialogBackgroundColor = DarkColorPalette.darkPurple;
 
   @override
   ThemeExtension<AppColorScheme> copyWith(
