@@ -1,11 +1,11 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:bake_budget_frontend/router/router.dart';
 
-class ProfileRoutes {
+class ListRoutes {
   static final routes = AutoRoute(
-    page: ProfileWrapperRoute.page,
+    page: ListWrapperRoute.page,
     children: [
-      AutoRoute(page: ProfileRoute.page, initial: true),
+      AutoRoute(page: ListRoute.page, initial: true),
     ],
   );
 }

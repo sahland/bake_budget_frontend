@@ -1,17 +1,17 @@
 import 'package:auto_route/auto_route.dart';
-import 'package:bake_budget_frontend/features/profile/widgets/widgets.dart';
+import 'package:bake_budget_frontend/features/list/widgets/widgets.dart';
 import 'package:bake_budget_frontend/uikit/uikit.dart';
 import 'package:flutter/material.dart';
 
 @RoutePage()
-class ProfileScreen extends StatefulWidget {
-  const ProfileScreen({super.key});
+class ListScreen extends StatefulWidget {
+  const ListScreen({super.key});
 
   @override
-  State<ProfileScreen> createState() => _ProfileScreenState();
+  State<ListScreen> createState() => _ListScreenState();
 }
 
-class _ProfileScreenState extends State<ProfileScreen> {
+class _ListScreenState extends State<ListScreen> {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
@@ -23,19 +23,17 @@ class _ProfileScreenState extends State<ProfileScreen> {
             pinned: true,
             centerTitle: true,
             toolbarHeight: 70,
+            elevation: 80,
             backgroundColor: theme.cardColor,
             surfaceTintColor: theme.cardColor,
             title: AppBarTitle(
               theme: theme,
-              title: 'Мой профиль',
+              title: 'Дополнительное',
             ),
           ),
           const SliverToBoxAdapter(
-            child: UserInfo(
-              username: 'Антон Пиструн',
-              userMail: 'antoshalittledick@mail.ru',
-            ),
-          ),
+            child: ListButtons(),
+          )
         ],
       ),
     );

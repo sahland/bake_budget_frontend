@@ -1,9 +1,7 @@
 import 'package:auto_route/auto_route.dart';
-import 'package:bake_budget_frontend/features/features.dart';
 import 'package:bake_budget_frontend/uikit/uikit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:google_fonts/google_fonts.dart';
 
 import '../widgets/widgets.dart';
 
@@ -47,8 +45,8 @@ class _ProductsScreenState extends State<ProductsScreen> {
             title: AppBarTitle(
               theme: theme,
               title: 'BakeBudget',
-              ),
-            leading: AppBarReorder(context: context, theme: theme),
+            ),
+            //leading: AppBarReorder(context: context, theme: theme),
             actions: [notifications(theme)],
           ),
           SliverPersistentHeader(
@@ -104,7 +102,6 @@ class _ProductsScreenState extends State<ProductsScreen> {
     );
   }
 }
-
 
 class _SliverAppBarDelegate extends SliverPersistentHeaderDelegate {
   _SliverAppBarDelegate({

@@ -1,7 +1,16 @@
 import 'package:flutter/material.dart';
 
 class UserIngredientInfo extends StatefulWidget {
-  const UserIngredientInfo({super.key});
+  final String ingredientName;
+  final int ingredientWeight;
+  final int ingredientPrice;
+
+  const UserIngredientInfo({
+    super.key,
+    required this.ingredientName,
+    required this.ingredientWeight,
+    required this.ingredientPrice,
+  });
 
   @override
   State<UserIngredientInfo> createState() => _UserIngredientInfoState();
@@ -25,56 +34,76 @@ class _UserIngredientInfoState extends State<UserIngredientInfo> {
                 borderRadius: const BorderRadius.all(Radius.circular(8)),
                 color: theme.dialogBackgroundColor,
                 boxShadow: [
-                  BoxShadow(
-                    color: Colors.black.withOpacity(0.3),
-                    spreadRadius: 2,
-                    blurRadius: 8,
-                    offset: const Offset(0, 3),
-                  ),
+                  _shadowButton(),
                 ],
               ),
-              child: Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 10),
-                child: Row(
-                  children: [
-                    Text(
-                      'молоко',
-                      style: TextStyle(
-                        color: theme.secondaryHeaderColor,
-                        fontSize: 15,
-                      ),
-                      overflow: TextOverflow.ellipsis,
-                      maxLines: 1,
-                    ),
-                    const Spacer(),
-                    Center(
-                      child: Text(
-                        '1000 гр.',
-                        style: TextStyle(
-                          color: theme.secondaryHeaderColor,
-                          fontSize: 15,
-                        ),
-                        overflow: TextOverflow.ellipsis,
-                        maxLines: 1,
-                      ),
-                    ),
-                    const Spacer(),
-                    Text(
-                      '60 руб.',
-                      style: TextStyle(
-                        color: theme.secondaryHeaderColor,
-                        fontSize: 15,
-                      ),
-                      overflow: TextOverflow.ellipsis,
-                      maxLines: 1,
-                    ),
-                  ],
-                ),
-              ),
+              child: _infoIngredient(theme),
             ),
           ],
         ),
       ),
+    );
+  }
+
+  Padding _infoIngredient(ThemeData theme) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 10),
+      child: Row(
+        children: [
+          _ingredientName(theme),
+          const Spacer(),
+          _ingredientWeight(theme),
+          const Spacer(),
+          _ingredientPrice(theme),
+        ],
+      ),
+    );
+  }
+
+  Text _ingredientPrice(ThemeData theme) {
+    return Text(
+      '${widget.ingredientPrice} руб.',
+      style: TextStyle(
+        color: theme.secondaryHeaderColor,
+        fontSize: 16,
+      ),
+      overflow: TextOverflow.ellipsis,
+      maxLines: 1,
+    );
+  }
+
+  Center _ingredientWeight(ThemeData theme) {
+    return Center(
+      child: Text(
+        '${widget.ingredientWeight} гр.',
+        style: TextStyle(
+          color: theme.secondaryHeaderColor,
+          fontSize: 16,
+        ),
+        overflow: TextOverflow.ellipsis,
+        maxLines: 1,
+      ),
+    );
+  }
+
+  Text _ingredientName(ThemeData theme) {
+    return Text(
+      widget.ingredientName,
+      style: TextStyle(
+        color: theme.secondaryHeaderColor,
+        fontSize: 16,
+      ),
+      overflow: TextOverflow.ellipsis,
+      maxLines: 1,
+    );
+  }
+
+  BoxShadow _shadowButton() {
+    return BoxShadow(
+      color: Colors.black.withOpacity(0.3),
+      spreadRadius: 2,
+      blurRadius: 8,
+      offset: const Offset(0, 3),
     );
   }
 }
