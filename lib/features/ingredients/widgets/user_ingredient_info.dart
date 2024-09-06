@@ -1,3 +1,4 @@
+import 'package:bake_budget_frontend/features/ingredients/widgets/widgets.dart';
 import 'package:flutter/material.dart';
 
 class UserIngredientInfo extends StatefulWidget {
@@ -24,7 +25,16 @@ class _UserIngredientInfoState extends State<UserIngredientInfo> {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 8),
       child: GestureDetector(
-        onTap: () {},
+        onTap: () {
+          showDialog(
+              context: context, 
+              builder: (BuildContext content) => UpdateIngredientDialog(
+                ingredientName: widget.ingredientName,
+                ingredientWeight: widget.ingredientWeight,
+                ingredientPrice: widget.ingredientPrice,
+              ),
+            );
+        },
         child: Column(
           children: [
             Container(

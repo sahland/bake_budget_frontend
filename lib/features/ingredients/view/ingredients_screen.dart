@@ -49,7 +49,12 @@ class _IngredientsScreenState extends State<IngredientsScreen> {
     return Stack(
       children: [
         IconButton(
-          onPressed: () {},
+          onPressed: () {
+            showDialog(
+              context: context, 
+              builder: (BuildContext content) => const NewIngredientDialog(),
+            );
+          },
           icon: SvgPicture.asset(
             './assets/icons/plus.svg',
             width: 20,
