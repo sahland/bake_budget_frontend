@@ -24,7 +24,7 @@ class _UserIngredientInfoState extends State<UserIngredientInfo> {
 
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 8),
-      child: GestureDetector(
+      child: InkWell(
         onTap: () {
           showDialog(
               context: context, 
