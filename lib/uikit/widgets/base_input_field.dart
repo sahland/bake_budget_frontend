@@ -17,6 +17,7 @@ class BaseInputField extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 8.0),
       child: Container(
+        width: double.infinity,
         height: 60,
         decoration: _buildBoxDecoration(theme),
         child: Row(

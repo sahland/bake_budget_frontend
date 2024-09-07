@@ -1,4 +1,5 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:bake_budget_frontend/router/router.dart';
 import 'package:bake_budget_frontend/uikit/uikit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -90,7 +91,11 @@ class _ProductsScreenState extends State<ProductsScreen> {
     return Stack(
       children: [
         IconButton(
-          onPressed: () {},
+          onPressed: () {
+            context.router.push(
+              ProductRoute(title: 'Новый продукт')
+            );
+          },
           icon: SvgPicture.asset(
             './assets/icons/plus.svg',
             width: 20,

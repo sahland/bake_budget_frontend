@@ -15,21 +15,24 @@ class MyProduct extends StatelessWidget {
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
 
-    return Container(
-      margin: const EdgeInsets.symmetric(vertical: 10, horizontal: 10),
-      decoration: BoxDecoration(
-        color: Colors.white,
-        borderRadius: BorderRadius.circular(20),
-        boxShadow: [
-          _widgetShadow(),
-        ],
-      ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.stretch,
-        children: [
-          _productImage(),
-          _productName(theme),
-        ],
+    return GestureDetector(
+      onTap: () {},
+      child: Container(
+        margin: const EdgeInsets.symmetric(vertical: 10, horizontal: 10),
+        decoration: BoxDecoration(
+          color: Colors.white,
+          borderRadius: BorderRadius.circular(20),
+          boxShadow: [
+            _widgetShadow(),
+          ],
+        ),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: [
+            _productImage(),
+            _productName(theme),
+          ],
+        ),
       ),
     );
   }
@@ -38,7 +41,7 @@ class MyProduct extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.symmetric(vertical: 12.0),
       decoration: BoxDecoration(
-        color: theme.dialogBackgroundColor, // Цвет фона для текста
+        color: theme.dialogBackgroundColor,
         borderRadius: const BorderRadius.only(
           bottomLeft: Radius.circular(20),
           bottomRight: Radius.circular(20),
@@ -48,7 +51,7 @@ class MyProduct extends StatelessWidget {
         productName,
         textAlign: TextAlign.center,
         style: GoogleFonts.poppins(
-          color: Colors.white, // Цвет текста
+          color: Colors.white,
           fontSize: 16,
           fontWeight: FontWeight.w500,
         ),
