@@ -15,6 +15,30 @@ abstract class _$AppRouter extends RootStackRouter {
 
   @override
   final Map<String, PageFactory> pagesMap = {
+    AdditionalRoute.name: (routeData) {
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: const AdditionalScreen(),
+      );
+    },
+    AdditionalWrapperRoute.name: (routeData) {
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: WrappedRoute(child: const AdditionalWrapperScreen()),
+      );
+    },
+    CostCalculationRoute.name: (routeData) {
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: const CostCalculationScreen(),
+      );
+    },
+    CostsRoute.name: (routeData) {
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: const CostsScreen(),
+      );
+    },
     HomeRoute.name: (routeData) {
       return AutoRoutePage<dynamic>(
         routeData: routeData,
@@ -33,18 +57,6 @@ abstract class _$AppRouter extends RootStackRouter {
         child: WrappedRoute(child: const IngredientsWrapperScreen()),
       );
     },
-    ListRoute.name: (routeData) {
-      return AutoRoutePage<dynamic>(
-        routeData: routeData,
-        child: const ListScreen(),
-      );
-    },
-    ListWrapperRoute.name: (routeData) {
-      return AutoRoutePage<dynamic>(
-        routeData: routeData,
-        child: WrappedRoute(child: const ListWrapperScreen()),
-      );
-    },
     ProductRoute.name: (routeData) {
       final args = routeData.argsAs<ProductRouteArgs>();
       return AutoRoutePage<dynamic>(
@@ -52,6 +64,8 @@ abstract class _$AppRouter extends RootStackRouter {
         child: ProductScreen(
           key: args.key,
           title: args.title,
+          weight: args.weight,
+          imagePath: args.imagePath,
         ),
       );
     },
@@ -80,6 +94,62 @@ abstract class _$AppRouter extends RootStackRouter {
       );
     },
   };
+}
+
+/// generated route for
+/// [AdditionalScreen]
+class AdditionalRoute extends PageRouteInfo<void> {
+  const AdditionalRoute({List<PageRouteInfo>? children})
+      : super(
+          AdditionalRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'AdditionalRoute';
+
+  static const PageInfo<void> page = PageInfo<void>(name);
+}
+
+/// generated route for
+/// [AdditionalWrapperScreen]
+class AdditionalWrapperRoute extends PageRouteInfo<void> {
+  const AdditionalWrapperRoute({List<PageRouteInfo>? children})
+      : super(
+          AdditionalWrapperRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'AdditionalWrapperRoute';
+
+  static const PageInfo<void> page = PageInfo<void>(name);
+}
+
+/// generated route for
+/// [CostCalculationScreen]
+class CostCalculationRoute extends PageRouteInfo<void> {
+  const CostCalculationRoute({List<PageRouteInfo>? children})
+      : super(
+          CostCalculationRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'CostCalculationRoute';
+
+  static const PageInfo<void> page = PageInfo<void>(name);
+}
+
+/// generated route for
+/// [CostsScreen]
+class CostsRoute extends PageRouteInfo<void> {
+  const CostsRoute({List<PageRouteInfo>? children})
+      : super(
+          CostsRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'CostsRoute';
+
+  static const PageInfo<void> page = PageInfo<void>(name);
 }
 
 /// generated route for
@@ -125,45 +195,21 @@ class IngredientsWrapperRoute extends PageRouteInfo<void> {
 }
 
 /// generated route for
-/// [ListScreen]
-class ListRoute extends PageRouteInfo<void> {
-  const ListRoute({List<PageRouteInfo>? children})
-      : super(
-          ListRoute.name,
-          initialChildren: children,
-        );
-
-  static const String name = 'ListRoute';
-
-  static const PageInfo<void> page = PageInfo<void>(name);
-}
-
-/// generated route for
-/// [ListWrapperScreen]
-class ListWrapperRoute extends PageRouteInfo<void> {
-  const ListWrapperRoute({List<PageRouteInfo>? children})
-      : super(
-          ListWrapperRoute.name,
-          initialChildren: children,
-        );
-
-  static const String name = 'ListWrapperRoute';
-
-  static const PageInfo<void> page = PageInfo<void>(name);
-}
-
-/// generated route for
 /// [ProductScreen]
 class ProductRoute extends PageRouteInfo<ProductRouteArgs> {
   ProductRoute({
     Key? key,
     required String title,
+    required String weight,
+    required String imagePath,
     List<PageRouteInfo>? children,
   }) : super(
           ProductRoute.name,
           args: ProductRouteArgs(
             key: key,
             title: title,
+            weight: weight,
+            imagePath: imagePath,
           ),
           initialChildren: children,
         );
@@ -178,15 +224,21 @@ class ProductRouteArgs {
   const ProductRouteArgs({
     this.key,
     required this.title,
+    required this.weight,
+    required this.imagePath,
   });
 
   final Key? key;
 
   final String title;
 
+  final String weight;
+
+  final String imagePath;
+
   @override
   String toString() {
-    return 'ProductRouteArgs{key: $key, title: $title}';
+    return 'ProductRouteArgs{key: $key, title: $title, weight: $weight, imagePath: $imagePath}';
   }
 }
 

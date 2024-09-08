@@ -2,18 +2,21 @@ import 'package:bake_budget_frontend/uikit/uikit.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-class NewIngredientDialog extends StatefulWidget {
-  const NewIngredientDialog({super.key});
+class NewCostDialog extends StatefulWidget {
+  const NewCostDialog({super.key});
 
   @override
-  State<NewIngredientDialog> createState() => _NewIngredientDialogState();
+  State<NewCostDialog> createState() => _NewCostDialogState();
 }
 
-class _NewIngredientDialogState extends State<NewIngredientDialog> {
+class _NewCostDialogState extends State<NewCostDialog> {
   @override
   Widget build(BuildContext context) {
-    const title = 'Создать ингредиент';
+    const title = 'Новая издержка';
+    const costName = 'Название...';
+    const costPrice = 'Стоимость...';
     const saveTitle = 'Сохранить';
+
     final theme = Theme.of(context);
 
     return Dialog(
@@ -34,9 +37,8 @@ class _NewIngredientDialogState extends State<NewIngredientDialog> {
                 ),
               ),
               const SizedBox(height: 20),
-              const BaseInputField(title: 'Название...'),
-              const BaseInputField(title: 'Вес...'),
-              const BaseInputField(title: 'Стоимость...'),
+              const BaseInputField(title: costName),
+              const BaseInputField(title: costPrice),
               const SizedBox(height: 20),
               const BaseElevatedButton(title: saveTitle)
             ],

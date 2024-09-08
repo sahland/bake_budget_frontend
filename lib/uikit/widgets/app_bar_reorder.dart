@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
-import '../../features/features.dart';
-
 class AppBarReorder extends StatelessWidget {
   const AppBarReorder({
     super.key,
@@ -24,6 +22,7 @@ class AppBarReorder extends StatelessWidget {
         './assets/icons/reorder.svg',
         width: 18.67,
         height: 14,
+        // ignore: deprecated_member_use
         color: theme.secondaryHeaderColor,
       ),
     );

@@ -1,22 +1,34 @@
+import 'package:auto_route/auto_route.dart';
+import 'package:bake_budget_frontend/router/router.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class MyProduct extends StatelessWidget {
+  final String imagePath;
+  final String productName;
+  final int weight;
+
   const MyProduct({
     required this.imagePath,
     required this.productName,
+    required this.weight,
     super.key,
   });
-
-  final String imagePath;
-  final String productName;
 
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
 
     return GestureDetector(
-      onTap: () {},
+      onTap: () {
+        context.router.push(
+          ProductRoute(
+            title: productName,
+            weight: '$weight гр.',
+            imagePath: imagePath,
+          ),
+        );
+      },
       child: Container(
         margin: const EdgeInsets.symmetric(vertical: 10, horizontal: 10),
         decoration: BoxDecoration(

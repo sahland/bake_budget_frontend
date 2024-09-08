@@ -1,9 +1,17 @@
 import 'package:bake_budget_frontend/uikit/uikit.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
 
 class NewProductInfo extends StatefulWidget {
-  const NewProductInfo({super.key});
+  final String title;
+  final String weight;
+  final String imagePath;
+
+  const NewProductInfo({
+    super.key,
+    required this.title,
+    required this.weight,
+    required this.imagePath,
+  });
 
   @override
   State<NewProductInfo> createState() => _NewProductInfoState();
@@ -15,10 +23,7 @@ class _NewProductInfoState extends State<NewProductInfo> {
     final theme = Theme.of(context);
 
     return Padding(
-      padding: const EdgeInsets.symmetric(
-        vertical: 5,
-        horizontal: 5
-      ),
+      padding: const EdgeInsets.symmetric(vertical: 0, horizontal: 5),
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -31,21 +36,23 @@ class _NewProductInfoState extends State<NewProductInfo> {
   }
 
   Expanded _productFields() {
-    return const Expanded(
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            BaseInputField(title: 'Название...'),
-            BaseInputField(title: 'Расчетный вес...'),
-          ],
-        ),
-      );
+    return Expanded(
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          BaseInputField(title: widget.title),
+          BaseInputField(title: widget.weight),
+        ],
+      ),
+    );
   }
 
   Widget _productImage(ThemeData theme) {
     return Column(
       children: [
-        const SizedBox(height: 11,),
+        const SizedBox(
+          height: 11,
+        ),
         GestureDetector(
           onTap: () {},
           child: Container(
@@ -58,13 +65,17 @@ class _NewProductInfoState extends State<NewProductInfo> {
                 _shadowButton(),
               ],
             ),
-            child: Center(
-              child: SvgPicture.asset('./assets/icons/plus.svg'),
+            child: ClipRRect(
+              borderRadius: BorderRadius.circular(8),
+              child: Image.network(
+                widget.imagePath,
+                fit: BoxFit.cover,
+              ),
             ),
           ),
         ),
       ],
-    ); 
+    );
   }
 
   BoxShadow _shadowButton() {

@@ -2,7 +2,6 @@ import 'package:auto_route/auto_route.dart';
 import 'package:bake_budget_frontend/router/router.dart';
 import 'package:bake_budget_frontend/uikit/uikit.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 
 import '../widgets/widgets.dart';
 
@@ -31,33 +30,55 @@ class _ProductsScreenState extends State<ProductsScreen> {
 
   @override
   Widget build(BuildContext context) {
+    const title = 'BakeBudget';
+    const searchTitle = 'Найти изделие...';
+    const productTitle = 'Новый продукт';
+    const productWeight = 'Расчетный вес';
+
     final theme = Theme.of(context);
 
     return Scaffold(
       body: CustomScrollView(
         slivers: [
           SliverAppBar(
-            pinned: true,
+            pinned: false,
             centerTitle: true,
+            floating: true,
+            snap: true,
             toolbarHeight: 70,
             elevation: 80,
             backgroundColor: theme.cardColor,
             surfaceTintColor: theme.cardColor,
             title: AppBarTitle(
               theme: theme,
-              title: 'BakeBudget',
+              title: title,
             ),
             //leading: AppBarReorder(context: context, theme: theme),
-            actions: [notifications(theme)],
+            actions: [
+              AddButton(
+                onPressed: () {
+                  context.router.push(
+                    ProductRoute(
+                      title: productTitle,
+                      weight: productWeight,
+                      imagePath:
+                          'https://akbflash.ru/files/images/cache/placeHolder/placeHolder.png',
+                    ),
+                  );
+                },
+              ),
+            ],
           ),
           SliverPersistentHeader(
             pinned: false,
             delegate: _SliverAppBarDelegate(
-              minHeight: 74.0,
-              maxHeight: 114.0,
+              minHeight: 110.0,
+              maxHeight: 120.0,
               child: Container(
                 color: theme.scaffoldBackgroundColor,
-                child: const TapeSearch(),
+                child: const BaseSearchField(
+                  title: searchTitle,
+                ),
               ),
             ),
           ),
@@ -76,6 +97,7 @@ class _ProductsScreenState extends State<ProductsScreen> {
                     imagePath:
                         'https://domruza.ru/d/0da7b433056b629442e49cde4eb65a77.jpg',
                     productName: 'Торт',
+                    weight: 1000,
                   );
                 },
                 childCount: 10, // Количество продуктов
@@ -84,26 +106,6 @@ class _ProductsScreenState extends State<ProductsScreen> {
           ),
         ],
       ),
-    );
-  }
-
-  Stack notifications(ThemeData theme) {
-    return Stack(
-      children: [
-        IconButton(
-          onPressed: () {
-            context.router.push(
-              ProductRoute(title: 'Новый продукт')
-            );
-          },
-          icon: SvgPicture.asset(
-            './assets/icons/plus.svg',
-            width: 20,
-            height: 20,
-            color: theme.secondaryHeaderColor,
-          ),
-        )
-      ],
     );
   }
 }

@@ -1,20 +1,20 @@
 import 'package:auto_route/auto_route.dart';
-import 'package:bake_budget_frontend/features/ingredients/widgets/widgets.dart';
+import 'package:bake_budget_frontend/features/costs/widgets/widgets.dart';
 import 'package:bake_budget_frontend/uikit/uikit.dart';
 import 'package:flutter/material.dart';
 
 @RoutePage()
-class IngredientsScreen extends StatefulWidget {
-  const IngredientsScreen({super.key});
+class CostsScreen extends StatefulWidget {
+  const CostsScreen({super.key});
 
   @override
-  State<IngredientsScreen> createState() => _IngredientsScreenState();
+  State<CostsScreen> createState() => _CostsScreenState();
 }
 
-class _IngredientsScreenState extends State<IngredientsScreen> {
+class _CostsScreenState extends State<CostsScreen> {
   @override
   Widget build(BuildContext context) {
-    const title = 'Ингредиенты';
+    const title = 'Издержки';
     final theme = Theme.of(context);
 
     return Scaffold(
@@ -29,35 +29,44 @@ class _IngredientsScreenState extends State<IngredientsScreen> {
             elevation: 80,
             backgroundColor: theme.cardColor,
             surfaceTintColor: theme.cardColor,
+            automaticallyImplyLeading: false,
             title: AppBarTitle(
               theme: theme,
               title: title,
             ),
+            leading: const LeadingPop(),
             actions: [
               AddButton(
                 onPressed: () {
                   showDialog(
                     context: context,
-                    builder: (BuildContext content) =>
-                        const NewIngredientDialog(),
+                    builder: (BuildContext content) => const NewCostDialog(),
                   );
                 },
-              )
+              ),
             ],
           ),
+          const SliverToBoxAdapter(
+            child: ProductsDropdown(
+              productsList: [
+                'Торт',
+                'Чизкейк',
+                'Негр в пене',
+                'Пузатик в масле',
+                'Сладкий рулет',
+              ],
+            ),
+          ),
           SliverList.builder(
-            itemBuilder: (context, index) => UserIngredientButton(
-              ingredientName: 'молоко',
-              ingredientWeight: 1000,
-              ingredientPrice: 60,
+            itemBuilder: (context, index) => CostInfoButton(
+              costName: 'вода',
+              costPrice: 100,
               onPressed: () {
                 showDialog(
                   context: context,
-                  builder: (BuildContext context) =>
-                      const UpdateIngredientDialog(
-                    ingredientName: 'молоко',
-                    ingredientWeight: 1000,
-                    ingredientPrice: 60,
+                  builder: (BuildContext context) => const UpdateCostDialog(
+                    costName: 'вода',
+                    costPrice: 100,
                   ),
                 );
               },

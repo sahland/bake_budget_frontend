@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 
 class BaseBottomSheet extends StatelessWidget {
-  const BaseBottomSheet({super.key, required this.child});
+  const BaseBottomSheet({
+    super.key,
+    required this.child,
+  });
 
   final Widget child;
 

@@ -2,18 +2,25 @@ import 'package:bake_budget_frontend/uikit/uikit.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-class NewIngredientDialog extends StatefulWidget {
-  const NewIngredientDialog({super.key});
+class UpdateCostDialog extends StatefulWidget {
+  final String costName;
+  final int costPrice;
+
+  const UpdateCostDialog({
+    super.key,
+    required this.costName,
+    required this.costPrice,
+  });
 
   @override
-  State<NewIngredientDialog> createState() => _NewIngredientDialogState();
+  State<UpdateCostDialog> createState() => _UpdateCostDialogState();
 }
 
-class _NewIngredientDialogState extends State<NewIngredientDialog> {
+class _UpdateCostDialogState extends State<UpdateCostDialog> {
   @override
   Widget build(BuildContext context) {
-    const title = 'Создать ингредиент';
     const saveTitle = 'Сохранить';
+    const deleteTitle = 'Удалить';
     final theme = Theme.of(context);
 
     return Dialog(
@@ -26,7 +33,7 @@ class _NewIngredientDialogState extends State<NewIngredientDialog> {
             mainAxisSize: MainAxisSize.min,
             children: [
               Text(
-                title,
+                widget.costName,
                 style: GoogleFonts.pacifico(
                   color: theme.secondaryHeaderColor,
                   fontSize: 24,
@@ -34,11 +41,19 @@ class _NewIngredientDialogState extends State<NewIngredientDialog> {
                 ),
               ),
               const SizedBox(height: 20),
-              const BaseInputField(title: 'Название...'),
-              const BaseInputField(title: 'Вес...'),
-              const BaseInputField(title: 'Стоимость...'),
+              BaseInputField(title: widget.costName),
+              BaseInputField(title: '${widget.costPrice} руб.'),
               const SizedBox(height: 20),
-              const BaseElevatedButton(title: saveTitle)
+              const Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  BaseElevatedButton(title: saveTitle),
+                   SizedBox(
+                    width: 10
+                  ),
+                  BaseElevatedButton(title: deleteTitle),
+                ],
+              )
             ],
           ),
         ),

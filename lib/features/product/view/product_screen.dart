@@ -6,10 +6,14 @@ import 'package:flutter/material.dart';
 @RoutePage()
 class ProductScreen extends StatefulWidget {
   final String title;
+  final String weight;
+  final String imagePath;
 
   const ProductScreen({
     super.key,
     required this.title,
+    required this.weight,
+    required this.imagePath,
   });
 
   @override
@@ -19,14 +23,17 @@ class ProductScreen extends StatefulWidget {
 class _ProductScreenState extends State<ProductScreen> {
   @override
   Widget build(BuildContext context) {
+    const searchTitle = 'Найти продукт...';
     final theme = Theme.of(context);
 
     return Scaffold(
       body: CustomScrollView(
         slivers: [
           SliverAppBar(
-            pinned: true,
+            pinned: false,
             centerTitle: true,
+            floating: true,
+            snap: true,
             toolbarHeight: 70,
             elevation: 80,
             backgroundColor: theme.cardColor,
@@ -38,9 +45,25 @@ class _ProductScreenState extends State<ProductScreen> {
             ),
             leading: const LeadingPop(),
           ),
+          SliverToBoxAdapter(
+            child: NewProductInfo(
+              title: widget.title,
+              weight: widget.weight,
+              imagePath: widget.imagePath,
+            ),
+          ),
           const SliverToBoxAdapter(
-            child: NewProductInfo(),
-          )
+            child: BaseSearchField(
+              title: searchTitle,
+            ),
+          ),
+          SliverList.builder(
+            itemBuilder: (context, index) => const UserIngredientButton(
+              ingredientName: 'молоко',
+              ingredientWeight: 1000,
+              ingredientPrice: 60,
+            ),
+          ),
         ],
       ),
     );
