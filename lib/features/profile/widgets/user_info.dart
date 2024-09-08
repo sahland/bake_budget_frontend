@@ -20,11 +20,11 @@ class _UserInfoState extends State<UserInfo> {
 
     return Stack(
       children: [
-        Container(
-          width: double.infinity,
-          height: 140,
-          color: theme.cardColor,
-        ),
+        // Container(
+        //   width: double.infinity,
+        //   height: 140,
+        //   color: theme.cardColor,
+        // ),
         Column(
           children: [
             const SizedBox(height: 65),
