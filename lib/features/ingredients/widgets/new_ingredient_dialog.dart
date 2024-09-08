@@ -12,6 +12,8 @@ class NewIngredientDialog extends StatefulWidget {
 class _NewIngredientDialogState extends State<NewIngredientDialog> {
   @override
   Widget build(BuildContext context) {
+    const title = 'Создать ингредиент';
+    const saveTitle = 'Сохранить';
     final theme = Theme.of(context);
 
     return Dialog(
@@ -24,7 +26,7 @@ class _NewIngredientDialogState extends State<NewIngredientDialog> {
             mainAxisSize: MainAxisSize.min,
             children: [
               Text(
-                'Ингредиент',
+                title,
                 style: GoogleFonts.pacifico(
                   color: theme.secondaryHeaderColor,
                   fontSize: 24,
@@ -36,22 +38,7 @@ class _NewIngredientDialogState extends State<NewIngredientDialog> {
               const BaseInputField(title: 'Вес...'),
               const BaseInputField(title: 'Стоимость...'),
               const SizedBox(height: 20),
-              ElevatedButton(
-                onPressed: () {
-                },
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: theme.primaryColor,
-                  elevation: 10
-                ),
-                child: Text(
-                  'Сохранить',
-                  style: TextStyle(
-                    color: theme.secondaryHeaderColor,
-                    fontSize: 16,
-                    fontWeight: FontWeight.w600,
-                  ),
-                ),
-              ),
+              const BaseElevatedButton(title: saveTitle)
             ],
           ),
         ),

@@ -21,6 +21,8 @@ class UpdateIngredientDialog extends StatefulWidget {
 class _UpdateIngredientDialogState extends State<UpdateIngredientDialog> {
   @override
   Widget build(BuildContext context) {
+    const saveTitle = 'Сохранить';
+    const deleteTitle = 'Удалить';
     final theme = Theme.of(context);
 
     return Dialog(
@@ -45,12 +47,14 @@ class _UpdateIngredientDialogState extends State<UpdateIngredientDialog> {
               BaseInputField(title: '${widget.ingredientWeight} гр.'),
               BaseInputField(title: '${widget.ingredientPrice} руб.'),
               const SizedBox(height: 20),
-              Row(
+              const Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  _dialogButton(theme, 'Сохранить'),
-                  const SizedBox(width: 10,),
-                  _dialogButton(theme, 'Удалить'),
+                  BaseElevatedButton(title: saveTitle),
+                  SizedBox(
+                    width: 10,
+                  ),
+                  BaseElevatedButton(title: deleteTitle)
                 ],
               )
             ],
@@ -58,24 +62,5 @@ class _UpdateIngredientDialogState extends State<UpdateIngredientDialog> {
         ),
       ),
     );
-  }
-
-  ElevatedButton _dialogButton(ThemeData theme, String title) {
-    return ElevatedButton(
-              onPressed: () {
-              },
-              style: ElevatedButton.styleFrom(
-                backgroundColor: theme.primaryColor,
-                elevation: 10
-              ),
-              child: Text(
-                title,
-                style: TextStyle(
-                  color: theme.secondaryHeaderColor,
-                  fontSize: 16,
-                  fontWeight: FontWeight.w600,
-                ),
-              ),
-            );
   }
 }

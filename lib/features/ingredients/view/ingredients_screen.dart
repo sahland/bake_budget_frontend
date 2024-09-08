@@ -2,7 +2,6 @@ import 'package:auto_route/auto_route.dart';
 import 'package:bake_budget_frontend/features/ingredients/widgets/widgets.dart';
 import 'package:bake_budget_frontend/uikit/uikit.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
 
 @RoutePage()
 class IngredientsScreen extends StatefulWidget {
@@ -15,54 +14,57 @@ class IngredientsScreen extends StatefulWidget {
 class _IngredientsScreenState extends State<IngredientsScreen> {
   @override
   Widget build(BuildContext context) {
+    const title = 'Ингредиенты';
     final theme = Theme.of(context);
 
     return Scaffold(
       body: CustomScrollView(
         slivers: [
           SliverAppBar(
-            pinned: true,
+            pinned: false,
             centerTitle: true,
+            floating: true,
+            snap: true,
             toolbarHeight: 70,
             elevation: 80,
             backgroundColor: theme.cardColor,
             surfaceTintColor: theme.cardColor,
             title: AppBarTitle(
               theme: theme,
-              title: 'Ингредиенты',
+              title: title,
             ),
-            actions: [notifications(theme)],
+            actions: [
+              AddButton(
+                onPressed: () {
+                  showDialog(
+                    context: context,
+                    builder: (BuildContext content) =>
+                        const NewIngredientDialog(),
+                  );
+                },
+              )
+            ],
           ),
           SliverList.builder(
-            itemBuilder: (context, index) => const UserIngredientInfo(
+            itemBuilder: (context, index) => UserIngredientButton(
               ingredientName: 'молоко',
               ingredientWeight: 1000,
               ingredientPrice: 60,
+              onPressed: () {
+                showDialog(
+                  context: context,
+                  builder: (BuildContext context) =>
+                      const UpdateIngredientDialog(
+                    ingredientName: 'молоко',
+                    ingredientWeight: 1000,
+                    ingredientPrice: 60,
+                  ),
+                );
+              },
             ),
-          )
+          ),
         ],
       ),
-    );
-  }
-
-  Stack notifications(ThemeData theme) {
-    return Stack(
-      children: [
-        IconButton(
-          onPressed: () {
-            showDialog(
-              context: context, 
-              builder: (BuildContext content) => const NewIngredientDialog(),
-            );
-          },
-          icon: SvgPicture.asset(
-            './assets/icons/plus.svg',
-            width: 20,
-            height: 20,
-            color: theme.secondaryHeaderColor,
-          ),
-        )
-      ],
     );
   }
 }
