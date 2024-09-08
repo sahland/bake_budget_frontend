@@ -1,19 +1,22 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-class TapeSearch extends StatelessWidget {
-  const TapeSearch({super.key});
+class BaseSearchField extends StatelessWidget {
+  final String title;
+
+  const BaseSearchField({
+    super.key,
+    required this.title,
+  });
 
   @override
   Widget build(BuildContext context) {
     return Column(
       children: [
         const SizedBox(height: 25),
-        Expanded(
-          child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 16),
-            child: _buildSearchContainer(context),
-          ),
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 5),
+          child: _buildSearchContainer(context),
         ),
       ],
     );
@@ -24,7 +27,7 @@ class TapeSearch extends StatelessWidget {
     final theme = Theme.of(context);
 
     return Container(
-      height: 80,
+      height: 75, // Фиксированная высота контейнера
       padding: const EdgeInsets.symmetric(horizontal: 10),
       decoration: _buildBoxDecoration(theme),
       child: Row(
@@ -50,7 +53,7 @@ class TapeSearch extends StatelessWidget {
     return Expanded(
       child: TextField(
         decoration: InputDecoration(
-          hintText: 'Найти изделие...',
+          hintText: title,
           hintStyle: _buildHintTextStyle(theme),
           contentPadding: const EdgeInsets.symmetric(horizontal: 5),
           enabledBorder: const OutlineInputBorder(borderSide: BorderSide.none),
