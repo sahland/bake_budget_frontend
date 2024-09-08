@@ -1,15 +1,17 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:bake_budget_frontend/features/features.dart';
+import 'package:bake_budget_frontend/router/router.dart';
 import 'package:bake_budget_frontend/uikit/widgets/base_long_button.dart';
 import 'package:flutter/material.dart';
 
-class ListButtons extends StatefulWidget {
-  const ListButtons({super.key});
+class AdditionalButtons extends StatefulWidget {
+  const AdditionalButtons({super.key});
 
   @override
-  State<ListButtons> createState() => _ListButtonsState();
+  State<AdditionalButtons> createState() => _AdditionalButtonsState();
 }
 
-class _ListButtonsState extends State<ListButtons> {
+class _AdditionalButtonsState extends State<AdditionalButtons> {
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -23,19 +25,25 @@ class _ListButtonsState extends State<ListButtons> {
           height: 65,
         ),
         BaseLongButton(
-          onPressed: () {},
-          title: 'Готовые изделия',
+          onPressed: () {
+            //context.router.push(const ProductsRoute());
+          },
+          title: 'Информация о приложении',
           width: 370,
           height: 65,
         ),
         BaseLongButton(
-          onPressed: () {},
+          onPressed: () {
+            context.router.push(const CostsRoute());
+          },
           title: 'Издержки',
           width: 370,
           height: 65,
         ),
         BaseLongButton(
-          onPressed: () {},
+          onPressed: () {
+            context.router.push(const CostCalculationRoute());
+          },
           title: 'Расчет стоимости',
           width: 370,
           height: 65,
