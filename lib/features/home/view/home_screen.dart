@@ -21,7 +21,7 @@ class _HomeScreenState extends State<HomeScreen> {
       routes: const [
         ProductsRoute(),
         IngredientsRoute(),
-        ListRoute(),
+        AdditionalRoute(),
         ProfileRoute(),
       ],
       builder: (context, child) {
