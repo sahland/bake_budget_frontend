@@ -12,13 +12,13 @@ class _LeadingPopState extends State<LeadingPop> {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
-    
+
     return IconButton(
-              onPressed: () => context.router.maybePop(),
-              icon: Icon(
-                Icons.arrow_back_ios_new,
-                color: theme.secondaryHeaderColor,
-              ),
-            );
+      onPressed: () => context.router.maybePop(),
+      icon: Icon(
+        Icons.arrow_back_ios_new,
+        color: theme.secondaryHeaderColor,
+      ),
+    );
   }
 }

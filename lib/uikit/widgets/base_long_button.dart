@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class BaseLongButton extends StatefulWidget {
-  final dynamic onPressed;
+  final VoidCallback? onPressed;
   final String title;
   final double width;
   final double height;
@@ -35,7 +35,7 @@ class _BaseLongButtonState extends State<BaseLongButton> {
             borderRadius: BorderRadius.circular(5),
           ),
         ),
-        onPressed: widget.onPressed,
+        onPressed: widget.onPressed ?? () {},
         child: Container(
           width: widget.width,
           height: widget.height,
