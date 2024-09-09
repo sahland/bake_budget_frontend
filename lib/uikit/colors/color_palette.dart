@@ -34,15 +34,15 @@ abstract class DarkColorPalette {
   // static const blackBanner = Color(0xFF353842);
   // //--------------------------------------------------
 
-  static const darkScaffold = Color(0xFF554D59);//scaffold
+  static const darkScaffold = Color(0xFF554D59); //scaffold
 
-  static const blueberry = Color(0xFFBC2F2D);//primary
+  static const blueberry = Color(0xFFBC2F2D); //primary
 
-  static const darkBrown = Color(0xFF323739);//app_bar
+  static const darkBrown = Color(0xFF323739); //app_bar
 
   static const textGrey = Color(0xFF686F82);
 
-  static const darkPurple = Color(0xFF7A7287);//dialog
+  static const darkPurple = Color(0xFF7A7287); //dialog
 
   static const blackBanner = Color(0xFF353842);
   //--------------------------------------------------

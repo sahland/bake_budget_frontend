@@ -49,7 +49,9 @@ class _AdditionalButtonsState extends State<AdditionalButtons> {
           height: 65,
         ),
         BaseLongButton(
-          onPressed: () {},
+          onPressed: () {
+            context.router.push(const OrdersRoute());
+          },
           title: 'Заказы',
           width: 370,
           height: 65,
