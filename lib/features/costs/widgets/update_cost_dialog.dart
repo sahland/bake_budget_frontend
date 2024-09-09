@@ -48,9 +48,7 @@ class _UpdateCostDialogState extends State<UpdateCostDialog> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   BaseElevatedButton(title: saveTitle),
-                   SizedBox(
-                    width: 10
-                  ),
+                  SizedBox(width: 10),
                   BaseElevatedButton(title: deleteTitle),
                 ],
               )

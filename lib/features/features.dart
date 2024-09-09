@@ -3,6 +3,7 @@ export 'cost_calculation/cost_calculation.dart';
 export 'costs/costs.dart';
 export 'home/home.dart';
 export 'ingredients/ingredients.dart';
+export 'orders/orders.dart';
 export 'product/product.dart';
 export 'profile/profile.dart';
 export 'products/products.dart';

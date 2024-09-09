@@ -12,7 +12,12 @@ class AdditionalRoutes {
       AutoRoute(
         page: CostsRoute.page,
       ),
-      AutoRoute(page: CostCalculationRoute.page,),
+      AutoRoute(
+        page: CostCalculationRoute.page,
+      ),
+      AutoRoute(
+        page: OrdersRoute.page,
+      ),
     ],
   );
 }
