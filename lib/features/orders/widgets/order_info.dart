@@ -6,12 +6,14 @@ class OrderInfo extends StatelessWidget {
   final String orderName;
   final int orderPrice;
   final int weight;
+  final VoidCallback? onTap;
 
   const OrderInfo({
     required this.imagePath,
     required this.orderName,
     required this.orderPrice,
     required this.weight,
+    this.onTap,
     super.key,
   });
 
@@ -20,7 +22,7 @@ class OrderInfo extends StatelessWidget {
     final theme = Theme.of(context);
 
     return GestureDetector(
-      onTap: () {},
+      onTap: onTap ?? () {},
       child: Container(
         margin: const EdgeInsets.symmetric(vertical: 10, horizontal: 10),
         decoration: BoxDecoration(

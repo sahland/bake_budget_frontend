@@ -65,12 +65,21 @@ class _OrdersScreenState extends State<OrdersScreen> {
               ),
               delegate: SliverChildBuilderDelegate(
                 (BuildContext context, int index) {
-                  return const OrderInfo(
-                      imagePath:
-                          'https://domruza.ru/d/0da7b433056b629442e49cde4eb65a77.jpg',
-                      orderName: 'Заказ 1',
-                      orderPrice: 1230,
-                      weight: 2000);
+                  return OrderInfo(
+                    imagePath:
+                        'https://domruza.ru/d/0da7b433056b629442e49cde4eb65a77.jpg',
+                    orderName: 'Заказ 1',
+                    orderPrice: 1230,
+                    weight: 2000,
+                    onTap: () {
+                      showDialog(
+                        context: context,
+                        builder: (BuildContext context) => const OrderDialog(
+                          title: 'Заказ 1',
+                        ),
+                      );
+                    },
+                  );
                 },
                 childCount: 10, // Количество продуктов
               ),
