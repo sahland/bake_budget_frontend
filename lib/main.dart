@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'bake_badget_app.dart';
+import 'bake_budget_app.dart';
 import 'features/features.dart';
 import 'theme/theme.dart';
 
@@ -11,5 +11,5 @@ void main() async {
   final themeStorage = ThemeStorage(prefs: prefs);
   final themeRepository = ThemeRepository(themeStorage: themeStorage);
   final themeController = ThemeController(themeRepository: themeRepository);
-  runApp(BakeBadgetApp(themeController: themeController));
+  runApp(BakeBudgetApp(themeController: themeController));
 }
