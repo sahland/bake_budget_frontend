@@ -5,13 +5,18 @@ class BaseLongButton extends StatefulWidget {
   final String title;
   final double width;
   final double height;
+  final double fontSize;
+  final double borderRadius;
 
-  const BaseLongButton(
-      {super.key,
-      required this.onPressed,
-      required this.title,
-      required this.width,
-      required this.height});
+  const BaseLongButton({
+    required this.onPressed,
+    required this.title,
+    this.width = 370,
+    this.height = 65,
+    this.fontSize = 18,
+    this.borderRadius = 5,
+    super.key,
+  });
 
   @override
   State<BaseLongButton> createState() => _BaseLongButtonState();
@@ -20,19 +25,25 @@ class BaseLongButton extends StatefulWidget {
 class _BaseLongButtonState extends State<BaseLongButton> {
   @override
   Widget build(BuildContext context) {
+    const verticalPadding = 5.0;
+    const horizontalPadding = 10.0;
+    const elevation = 10.0;
+
     final theme = Theme.of(context);
 
     return Padding(
       padding: const EdgeInsets.symmetric(
-        vertical: 5,
-        horizontal: 10,
+        vertical: verticalPadding,
+        horizontal: horizontalPadding,
       ),
       child: ElevatedButton(
         style: ElevatedButton.styleFrom(
           backgroundColor: theme.dialogBackgroundColor,
-          elevation: 10,
+          elevation: elevation,
           shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(5),
+            borderRadius: BorderRadius.circular(
+              widget.borderRadius,
+            ),
           ),
         ),
         onPressed: widget.onPressed ?? () {},
@@ -46,7 +57,7 @@ class _BaseLongButtonState extends State<BaseLongButton> {
               widget.title,
               style: TextStyle(
                 color: theme.secondaryHeaderColor,
-                fontSize: 18,
+                fontSize: widget.fontSize,
                 fontWeight: FontWeight.w500,
               ),
             ),

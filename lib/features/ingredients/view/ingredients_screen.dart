@@ -15,6 +15,9 @@ class _IngredientsScreenState extends State<IngredientsScreen> {
   @override
   Widget build(BuildContext context) {
     const title = 'Ингредиенты';
+    const toolbarHeight = 70.0;
+    const elevation = 80.0;
+
     final theme = Theme.of(context);
 
     return Scaffold(
@@ -25,12 +28,11 @@ class _IngredientsScreenState extends State<IngredientsScreen> {
             centerTitle: true,
             floating: true,
             snap: true,
-            toolbarHeight: 70,
-            elevation: 80,
+            toolbarHeight: toolbarHeight,
+            elevation: elevation,
             backgroundColor: theme.cardColor,
             surfaceTintColor: theme.cardColor,
-            title: AppBarTitle(
-              theme: theme,
+            title: const AppBarTitle(
               title: title,
             ),
             actions: [

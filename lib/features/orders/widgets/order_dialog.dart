@@ -1,3 +1,4 @@
+import 'package:bake_budget_frontend/uikit/uikit.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -17,7 +18,11 @@ class _OrderDialogState extends State<OrderDialog> {
   Widget build(BuildContext context) {
     const status = 'Статус заказа';
 
-    int _selectedValue = 0;
+    const notStarted = 'Не начат';
+    const inProgress = 'В процессе';
+    const completed = 'Завершён';
+    const cancelled = 'Отменён';
+
     final theme = Theme.of(context);
 
     return Dialog(
@@ -31,45 +36,27 @@ class _OrderDialogState extends State<OrderDialog> {
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
-            Text(
-              widget.title,
-              style: GoogleFonts.pacifico(
-                color: theme.secondaryHeaderColor,
-                fontSize: 24,
-                fontWeight: FontWeight.w400,
-              ),
+            _titleText(theme),
+            _statusText(status, theme),
+            const BaseCheckbox(
+              title: notStarted,
+              index: 0,
+              fontSize: 16,
             ),
-            Text(
-              status,
-              style: GoogleFonts.pacifico(
-                color: theme.secondaryHeaderColor.withOpacity(0.8),
-                fontSize: 18,
-                fontWeight: FontWeight.w400,
-              ),
+            const BaseCheckbox(
+              title: inProgress,
+              index: 1,
+              fontSize: 16,
             ),
-            _orderCheckbox(
-              'Не начат',
-              _selectedValue,
-              1,
-              theme,
+            const BaseCheckbox(
+              title: completed,
+              index: 2,
+              fontSize: 16,
             ),
-            _orderCheckbox(
-              'В процессе',
-              _selectedValue,
-              2,
-              theme,
-            ),
-            _orderCheckbox(
-              'Завершен',
-              _selectedValue,
-              3,
-              theme,
-            ),
-            _orderCheckbox(
-              'Отменен',
-              _selectedValue,
-              4,
-              theme,
+            const BaseCheckbox(
+              title: cancelled,
+              index: 3,
+              fontSize: 16,
             ),
           ],
         ),
@@ -77,27 +64,25 @@ class _OrderDialogState extends State<OrderDialog> {
     );
   }
 
-  Widget _orderCheckbox(
-      String title, int selectedValue, int index, ThemeData theme) {
-    return CheckboxListTile(
-      title: Text(
-        title,
-        style: TextStyle(
-          color: theme.secondaryHeaderColor,
-          fontSize: 16,
-          fontWeight: FontWeight.w500,
-        ),
+  Text _statusText(String status, ThemeData theme) {
+    return Text(
+      status,
+      style: GoogleFonts.pacifico(
+        color: theme.secondaryHeaderColor.withOpacity(0.8),
+        fontSize: 18,
+        fontWeight: FontWeight.w400,
       ),
-      checkboxShape:
-          RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
-      value: selectedValue == index,
-      onChanged: (value) {
-        setState(() {
-          if (value!) {
-            selectedValue = index;
-          }
-        });
-      },
+    );
+  }
+
+  Text _titleText(ThemeData theme) {
+    return Text(
+      widget.title,
+      style: GoogleFonts.pacifico(
+        color: theme.secondaryHeaderColor,
+        fontSize: 24,
+        fontWeight: FontWeight.w400,
+      ),
     );
   }
 }

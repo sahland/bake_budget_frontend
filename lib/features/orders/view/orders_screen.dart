@@ -30,6 +30,9 @@ class _OrdersScreenState extends State<OrdersScreen> {
   @override
   Widget build(BuildContext context) {
     const title = 'Заказы';
+    const toolbarHeight = 70.0;
+    const elevation = 80.0;
+
     final theme = Theme.of(context);
 
     return Scaffold(
@@ -40,13 +43,12 @@ class _OrdersScreenState extends State<OrdersScreen> {
             centerTitle: true,
             floating: true,
             snap: true,
-            toolbarHeight: 70,
-            elevation: 80,
+            toolbarHeight: toolbarHeight,
+            elevation: elevation,
             backgroundColor: theme.cardColor,
             surfaceTintColor: theme.cardColor,
             automaticallyImplyLeading: false,
-            title: AppBarTitle(
-              theme: theme,
+            title: const AppBarTitle(
               title: title,
             ),
             leading: const LeadingPop(),
@@ -81,7 +83,7 @@ class _OrdersScreenState extends State<OrdersScreen> {
                     },
                   );
                 },
-                childCount: 10, // Количество продуктов
+                childCount: 10,
               ),
             ),
           ),
@@ -91,19 +93,25 @@ class _OrdersScreenState extends State<OrdersScreen> {
   }
 
   Container _orderTabs() {
+    const height = 60.0;
+    const margin = 10.0;
+    const padding = 2.0;
+    const fontSize = 20.0;
+
     return Container(
-      height: 60,
-      margin: const EdgeInsets.symmetric(vertical: 10.0),
+      height: height,
+      margin: const EdgeInsets.symmetric(vertical: margin),
       child: ListView.builder(
         scrollDirection: Axis.horizontal,
         itemCount: tabTexts.length,
         itemBuilder: (context, index) {
           return Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 2),
+            padding: const EdgeInsets.symmetric(horizontal: padding),
             child: BaseBuildTab(
               index: index,
               text: tabTexts[index],
               isActive: _selectedTabIndex == index,
+              fontSize: fontSize,
               onTap: () => _onTabSelected(index),
             ),
           );

@@ -2,26 +2,33 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
 class AppBarReorder extends StatelessWidget {
-  const AppBarReorder({
-    super.key,
-    required this.context,
-    required this.theme,
-  });
+  final double width;
+  final double height;
+  final VoidCallback? onPressed;
 
-  final BuildContext context;
-  final ThemeData theme;
+  const AppBarReorder({
+    required this.width,
+    required this.height,
+    this.onPressed,
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {
+    const imagePath = './assets/icons/reorder.svg';
+    final theme = Theme.of(context);
+
     return IconButton(
-      onPressed: () {
-        //ThemeInherited.of(context).switchThemeMode();
-        Scaffold.of(context).openDrawer();
-      },
+      onPressed: onPressed ??
+          () {
+            //Scaffold.of(context).openDrawer();
+          },
       icon: SvgPicture.asset(
-        './assets/icons/reorder.svg',
-        width: 18.67,
-        height: 14,
+        imagePath,
+        // width: 18.67,
+        // height: 14,
+        width: width,
+        height: height,
         // ignore: deprecated_member_use
         color: theme.secondaryHeaderColor,
       ),

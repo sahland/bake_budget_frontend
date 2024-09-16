@@ -15,6 +15,9 @@ class _CostsScreenState extends State<CostsScreen> {
   @override
   Widget build(BuildContext context) {
     const title = 'Издержки';
+    const toolbarHeight = 70.0;
+    const elevation = 80.0;
+
     final theme = Theme.of(context);
 
     return Scaffold(
@@ -25,13 +28,12 @@ class _CostsScreenState extends State<CostsScreen> {
             centerTitle: true,
             floating: true,
             snap: true,
-            toolbarHeight: 70,
-            elevation: 80,
+            toolbarHeight: toolbarHeight,
+            elevation: elevation,
             backgroundColor: theme.cardColor,
             surfaceTintColor: theme.cardColor,
             automaticallyImplyLeading: false,
-            title: AppBarTitle(
-              theme: theme,
+            title: const AppBarTitle(
               title: title,
             ),
             leading: const LeadingPop(),

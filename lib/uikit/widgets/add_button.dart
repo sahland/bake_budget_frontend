@@ -2,11 +2,15 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
 class AddButton extends StatefulWidget {
+  final double width;
+  final double height;
   final VoidCallback? onPressed;
 
   const AddButton({
-    super.key,
+    this.width = 20,
+    this.height = 20,
     this.onPressed,
+    super.key,
   });
 
   @override
@@ -16,6 +20,7 @@ class AddButton extends StatefulWidget {
 class _AddButtonState extends State<AddButton> {
   @override
   Widget build(BuildContext context) {
+    const imagePath = './assets/icons/plus.svg';
     final theme = Theme.of(context);
 
     return Stack(
@@ -23,9 +28,9 @@ class _AddButtonState extends State<AddButton> {
         IconButton(
           onPressed: widget.onPressed ?? () {},
           icon: SvgPicture.asset(
-            './assets/icons/plus.svg',
-            width: 20,
-            height: 20,
+            imagePath,
+            width: widget.width,
+            height: widget.height,
             // ignore: deprecated_member_use
             color: theme.secondaryHeaderColor,
           ),
