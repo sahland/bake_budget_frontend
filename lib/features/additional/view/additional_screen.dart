@@ -14,6 +14,10 @@ class AdditionalScreen extends StatefulWidget {
 class _AdditionalScreenState extends State<AdditionalScreen> {
   @override
   Widget build(BuildContext context) {
+    const title = 'Дополнительное';
+    const toolbarHeight = 70.0;
+    const elevation = 80.0;
+
     final theme = Theme.of(context);
 
     return Scaffold(
@@ -24,13 +28,12 @@ class _AdditionalScreenState extends State<AdditionalScreen> {
             centerTitle: true,
             floating: true,
             snap: true,
-            toolbarHeight: 70,
-            elevation: 80,
+            toolbarHeight: toolbarHeight,
+            elevation: elevation,
             backgroundColor: theme.cardColor,
             surfaceTintColor: theme.cardColor,
-            title: AppBarTitle(
-              theme: theme,
-              title: 'Дополнительное',
+            title: const AppBarTitle(
+              title: title,
             ),
           ),
           const SliverToBoxAdapter(
