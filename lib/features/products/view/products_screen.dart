@@ -34,6 +34,8 @@ class _ProductsScreenState extends State<ProductsScreen> {
     const searchTitle = 'Найти изделие...';
     const productTitle = 'Новый продукт';
     const productWeight = 'Расчетный вес';
+    const toolbarHeight = 70.0;
+    const elevation = 80.0;
 
     final theme = Theme.of(context);
 
@@ -45,12 +47,11 @@ class _ProductsScreenState extends State<ProductsScreen> {
             centerTitle: true,
             floating: true,
             snap: true,
-            toolbarHeight: 70,
-            elevation: 80,
+            toolbarHeight: toolbarHeight,
+            elevation: elevation,
             backgroundColor: theme.cardColor,
             surfaceTintColor: theme.cardColor,
-            title: AppBarTitle(
-              theme: theme,
+            title: const AppBarTitle(
               title: title,
             ),
             //leading: AppBarReorder(context: context, theme: theme),
@@ -72,8 +73,6 @@ class _ProductsScreenState extends State<ProductsScreen> {
           SliverPersistentHeader(
             pinned: false,
             delegate: _SliverAppBarDelegate(
-              minHeight: 110.0,
-              maxHeight: 120.0,
               child: Container(
                 color: theme.scaffoldBackgroundColor,
                 child: const BaseSearchField(
@@ -111,15 +110,15 @@ class _ProductsScreenState extends State<ProductsScreen> {
 }
 
 class _SliverAppBarDelegate extends SliverPersistentHeaderDelegate {
-  _SliverAppBarDelegate({
-    required this.minHeight,
-    required this.maxHeight,
-    required this.child,
-  });
-
   final double minHeight;
   final double maxHeight;
   final Widget child;
+
+  _SliverAppBarDelegate({
+    this.minHeight = 110.0,
+    this.maxHeight = 120.0,
+    required this.child,
+  });
 
   @override
   double get minExtent => minHeight;

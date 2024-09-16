@@ -24,6 +24,9 @@ class _ProductScreenState extends State<ProductScreen> {
   @override
   Widget build(BuildContext context) {
     const searchTitle = 'Найти продукт...';
+    const toolbarHeight = 70.0;
+    const elevation = 80.0;
+
     final theme = Theme.of(context);
 
     return Scaffold(
@@ -34,13 +37,12 @@ class _ProductScreenState extends State<ProductScreen> {
             centerTitle: true,
             floating: true,
             snap: true,
-            toolbarHeight: 70,
-            elevation: 80,
+            toolbarHeight: toolbarHeight,
+            elevation: elevation,
             backgroundColor: theme.cardColor,
             surfaceTintColor: theme.cardColor,
             automaticallyImplyLeading: false,
             title: AppBarTitle(
-              theme: theme,
               title: widget.title,
             ),
             leading: const LeadingPop(),
