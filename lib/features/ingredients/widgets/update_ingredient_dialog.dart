@@ -6,12 +6,18 @@ class UpdateIngredientDialog extends StatefulWidget {
   final String ingredientName;
   final int ingredientWeight;
   final int ingredientPrice;
+  final double verticalPadding;
+  final double horizontalPadding;
+  final double fontSize;
 
   const UpdateIngredientDialog({
-    super.key,
     required this.ingredientName,
     required this.ingredientWeight,
     required this.ingredientPrice,
+    this.verticalPadding = 100,
+    this.horizontalPadding = 20,
+    this.fontSize = 24,
+    super.key,
   });
 
   @override
@@ -23,43 +29,68 @@ class _UpdateIngredientDialogState extends State<UpdateIngredientDialog> {
   Widget build(BuildContext context) {
     const saveTitle = 'Сохранить';
     const deleteTitle = 'Удалить';
+    const padding = 16.0;
+    const sizedBoxHeight = 20.0;
+    const sizedBoxWidth = 10.0;
+
+    final ingredientWeightTitle = '${widget.ingredientWeight} гр.';
+    final ingredientPriceTitle = '${widget.ingredientPrice} руб.';
     final theme = Theme.of(context);
 
     return Dialog(
       backgroundColor: theme.cardColor,
-      insetPadding: const EdgeInsets.symmetric(vertical: 100, horizontal: 20),
+      insetPadding: EdgeInsets.symmetric(
+          vertical: widget.verticalPadding, horizontal: widget.verticalPadding),
       child: SingleChildScrollView(
         child: Padding(
-          padding: const EdgeInsets.all(16.0),
+          padding: const EdgeInsets.all(padding),
           child: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
-              Text(
-                widget.ingredientName,
-                style: GoogleFonts.pacifico(
-                  color: theme.secondaryHeaderColor,
-                  fontSize: 24,
-                  fontWeight: FontWeight.w400,
-                ),
+              _updateDialogTitle(theme),
+              const SizedBox(
+                height: sizedBoxHeight,
               ),
-              const SizedBox(height: 20),
-              BaseInputField(title: widget.ingredientName),
-              BaseInputField(title: '${widget.ingredientWeight} гр.'),
-              BaseInputField(title: '${widget.ingredientPrice} руб.'),
-              const SizedBox(height: 20),
+              BaseInputField(
+                title: widget.ingredientName,
+              ),
+              BaseInputField(
+                title: ingredientWeightTitle,
+              ),
+              BaseInputField(
+                title: ingredientPriceTitle,
+              ),
+              const SizedBox(
+                height: sizedBoxHeight,
+              ),
               const Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  BaseElevatedButton(title: saveTitle),
-                  SizedBox(
-                    width: 10,
+                  BaseElevatedButton(
+                    title: saveTitle,
                   ),
-                  BaseElevatedButton(title: deleteTitle)
+                  SizedBox(
+                    width: sizedBoxWidth,
+                  ),
+                  BaseElevatedButton(
+                    title: deleteTitle,
+                  )
                 ],
               )
             ],
           ),
         ),
+      ),
+    );
+  }
+
+  Text _updateDialogTitle(ThemeData theme) {
+    return Text(
+      widget.ingredientName,
+      style: GoogleFonts.pacifico(
+        color: theme.secondaryHeaderColor,
+        fontSize: widget.fontSize,
+        fontWeight: FontWeight.w400,
       ),
     );
   }
