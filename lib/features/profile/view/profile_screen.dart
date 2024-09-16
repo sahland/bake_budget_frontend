@@ -14,6 +14,9 @@ class ProfileScreen extends StatefulWidget {
 class _ProfileScreenState extends State<ProfileScreen> {
   @override
   Widget build(BuildContext context) {
+    const toolbarHeight = 70.0;
+    const elevation = 80.0;
+
     final theme = Theme.of(context);
 
     return Scaffold(
@@ -24,11 +27,11 @@ class _ProfileScreenState extends State<ProfileScreen> {
             centerTitle: true,
             floating: true,
             snap: true,
-            toolbarHeight: 70,
+            toolbarHeight: toolbarHeight,
+            elevation: elevation,
             backgroundColor: theme.cardColor,
             surfaceTintColor: theme.cardColor,
-            title: AppBarTitle(
-              theme: theme,
+            title: const AppBarTitle(
               title: 'Мой профиль',
             ),
           ),
