@@ -5,26 +5,39 @@ import 'package:google_fonts/google_fonts.dart';
 class BaseInputField extends StatelessWidget {
   final String title;
 
+  final double width;
+  final double height;
+  final double fontSize;
+  final double borderRadius;
+  final String svgImagePath;
+
   const BaseInputField({
-    super.key,
     required this.title,
+    this.width = double.infinity,
+    this.height = 60,
+    this.fontSize = 16,
+    this.borderRadius = 15,
+    this.svgImagePath = './assets/icons/pen_icon.svg',
+    super.key,
   });
 
   @override
   Widget build(BuildContext context) {
+    const verticalPadding = 8.0;
+    const sizedBoxWidth = 10.0;
     final theme = Theme.of(context);
 
     return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 8.0),
+      padding: const EdgeInsets.symmetric(vertical: verticalPadding),
       child: Container(
-        width: double.infinity,
-        height: 60,
-        decoration: _buildBoxDecoration(theme),
+        width: width,
+        height: height,
+        decoration: _buildBoxDecoration(theme, borderRadius),
         child: Row(
           children: [
-            const SizedBox(width: 10),
-            _buildPenIcon(theme),
-            const SizedBox(width: 10),
+            const SizedBox(width: sizedBoxWidth),
+            _buildPenIcon(theme, svgImagePath),
+            const SizedBox(width: sizedBoxWidth),
             _buildParamField(theme, title),
           ],
         ),
@@ -37,41 +50,52 @@ class BaseInputField extends StatelessWidget {
       child: TextField(
         decoration: InputDecoration(
           hintText: title,
-          hintStyle: _buildHintTextStyle(theme),
+          hintStyle: _buildHintTextStyle(theme, fontSize),
           border: InputBorder.none,
         ),
-        style: _buildHintTextStyle(theme),
+        style: _buildHintTextStyle(theme, fontSize),
       ),
     );
   }
 
-  Widget _buildPenIcon(ThemeData theme) {
+  Widget _buildPenIcon(ThemeData theme, String imagePath) {
     return SvgPicture.asset(
-      './assets/icons/pen_icon.svg',
+      imagePath,
+      // ignore: deprecated_member_use
       color: theme.secondaryHeaderColor,
     );
   }
 
-  BoxDecoration _buildBoxDecoration(ThemeData theme) {
+  BoxDecoration _buildBoxDecoration(ThemeData theme, double borderRadius) {
+    const opacity = 0.3;
+    const blurRadius = 12.0;
+    const offsetDx = 0.0;
+    const offsetDy = 4.0;
+
     return BoxDecoration(
       color: theme.dialogBackgroundColor,
-      borderRadius: BorderRadius.circular(15),
+      borderRadius: BorderRadius.circular(borderRadius),
       boxShadow: [
         BoxShadow(
-          color: Colors.black.withOpacity(0.3),
-          blurRadius: 12,
-          offset: const Offset(0, 4),
+          color: Colors.black.withOpacity(opacity),
+          blurRadius: blurRadius,
+          offset: const Offset(
+            offsetDx,
+            offsetDy,
+          ),
         ),
       ],
     );
   }
 
-  TextStyle _buildHintTextStyle(ThemeData theme) {
+  TextStyle _buildHintTextStyle(ThemeData theme, double fontSize) {
+    const letterSpacing = 0.1;
+
     return GoogleFonts.poppins(
       color: theme.secondaryHeaderColor,
-      fontSize: 16,
+      fontSize: fontSize,
       fontWeight: FontWeight.w400,
-      letterSpacing: 0.1,
+      letterSpacing: letterSpacing,
     );
   }
 }
