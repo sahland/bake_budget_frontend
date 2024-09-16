@@ -36,21 +36,21 @@ class OrderInfo extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             _productImage(),
-            _productText(
+            _orderText(
               theme,
               orderName,
               BoxDecoration(
                 color: theme.dialogBackgroundColor,
               ),
             ),
-            _productText(
+            _orderText(
               theme,
               '$orderPrice руб.',
               BoxDecoration(
                 color: theme.dialogBackgroundColor,
               ),
             ),
-            _productText(
+            _orderText(
               theme,
               'за $weight г.',
               BoxDecoration(
@@ -67,8 +67,7 @@ class OrderInfo extends StatelessWidget {
     );
   }
 
-  Container _productText(
-      ThemeData theme, String text, BoxDecoration decoration) {
+  Container _orderText(ThemeData theme, String text, BoxDecoration decoration) {
     return Container(
       padding: const EdgeInsets.symmetric(vertical: 6),
       decoration: decoration,
