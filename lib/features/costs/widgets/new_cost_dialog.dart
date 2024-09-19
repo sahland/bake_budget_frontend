@@ -1,16 +1,13 @@
 import 'package:bake_budget_frontend/uikit/uikit.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 
 class NewCostDialog extends StatefulWidget {
   final double verticalPadding;
   final double horizontalPadding;
-  final double fontSize;
 
   const NewCostDialog({
     this.verticalPadding = 100,
     this.horizontalPadding = 20,
-    this.fontSize = 24,
     super.key,
   });
 
@@ -36,45 +33,33 @@ class _NewCostDialogState extends State<NewCostDialog> {
         vertical: widget.verticalPadding,
         horizontal: widget.horizontalPadding,
       ),
-      child: SingleChildScrollView(
+      child: const SingleChildScrollView(
         child: Padding(
-          padding: const EdgeInsets.all(padding),
+          padding: EdgeInsets.all(padding),
           child: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
-              _newCostTitle(
-                title,
-                theme,
+              BaseDialogTitle(
+                title: title
               ),
-              const SizedBox(
+              SizedBox(
                 height: sizedBoxHeight,
               ),
-              const BaseInputField(
+              BaseInputField(
                 title: costName,
               ),
-              const BaseInputField(
+              BaseInputField(
                 title: costPrice,
               ),
-              const SizedBox(
+              SizedBox(
                 height: sizedBoxHeight,
               ),
-              const BaseElevatedButton(
+              BaseElevatedButton(
                 title: saveTitle,
               ),
             ],
           ),
         ),
-      ),
-    );
-  }
-
-  Text _newCostTitle(String title, ThemeData theme) {
-    return Text(
-      title,
-      style: GoogleFonts.pacifico(
-        color: theme.secondaryHeaderColor,
-        fontSize: widget.fontSize,
-        fontWeight: FontWeight.w400,
       ),
     );
   }

@@ -6,6 +6,11 @@ class OrderInfo extends StatelessWidget {
   final String orderName;
   final int orderPrice;
   final int weight;
+
+  final double verticalMargin;
+  final double horizontalMargin;
+  final double borderRadius;
+
   final VoidCallback? onTap;
 
   const OrderInfo({
@@ -13,21 +18,29 @@ class OrderInfo extends StatelessWidget {
     required this.orderName,
     required this.orderPrice,
     required this.weight,
+    this.verticalMargin = 10,
+    this.horizontalMargin = 10,
+    this.borderRadius = 20,
     this.onTap,
     super.key,
   });
 
   @override
   Widget build(BuildContext context) {
+    const placeholder = './assets/images/placeholder.png';
+
+    final orderPriceTitle = '$orderPrice руб.';
+    final orderWeightTitle = 'за $weight г.';
+
     final theme = Theme.of(context);
 
     return GestureDetector(
       onTap: onTap ?? () {},
       child: Container(
-        margin: const EdgeInsets.symmetric(vertical: 10, horizontal: 10),
+        margin: EdgeInsets.symmetric(vertical: verticalMargin, horizontal: horizontalMargin,),
         decoration: BoxDecoration(
           color: Colors.white,
-          borderRadius: BorderRadius.circular(20),
+          borderRadius: BorderRadius.circular(borderRadius),
           boxShadow: [
             _widgetShadow(),
           ],
@@ -35,7 +48,9 @@ class OrderInfo extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            _productImage(),
+            _productImage(
+              placeholder,
+            ),
             _orderText(
               theme,
               orderName,
@@ -45,19 +60,19 @@ class OrderInfo extends StatelessWidget {
             ),
             _orderText(
               theme,
-              '$orderPrice руб.',
+              orderPriceTitle,
               BoxDecoration(
                 color: theme.dialogBackgroundColor,
               ),
             ),
             _orderText(
               theme,
-              'за $weight г.',
+              orderWeightTitle,
               BoxDecoration(
                 color: theme.dialogBackgroundColor,
-                borderRadius: const BorderRadius.only(
-                  bottomLeft: Radius.circular(20),
-                  bottomRight: Radius.circular(20),
+                borderRadius: BorderRadius.only(
+                  bottomLeft: Radius.circular(borderRadius),
+                  bottomRight: Radius.circular(borderRadius),
                 ),
               ),
             ),
@@ -68,8 +83,10 @@ class OrderInfo extends StatelessWidget {
   }
 
   Container _orderText(ThemeData theme, String text, BoxDecoration decoration) {
+    const verticalPadding = 6.0;
+
     return Container(
-      padding: const EdgeInsets.symmetric(vertical: 6),
+      padding: const EdgeInsets.symmetric(vertical: verticalPadding),
       decoration: decoration,
       child: Text(
         text,
@@ -83,32 +100,40 @@ class OrderInfo extends StatelessWidget {
     );
   }
 
-  Expanded _productImage() {
+  Expanded _productImage(String placeholder) {
+    const milliseconds = 300;
+
     return Expanded(
       child: ClipRRect(
-        borderRadius: const BorderRadius.only(
-          topLeft: Radius.circular(20),
-          topRight: Radius.circular(20),
+        borderRadius: BorderRadius.only(
+          topLeft: Radius.circular(borderRadius),
+          topRight: Radius.circular(borderRadius),
         ),
         child: FadeInImage.assetNetwork(
-          placeholder: './assets/images/placeholder.png',
+          placeholder: placeholder,
           image: imagePath,
           fit: BoxFit.cover,
           width: double.infinity,
           height: double.infinity,
-          fadeInDuration: const Duration(milliseconds: 300),
-          fadeOutDuration: const Duration(milliseconds: 300),
+          fadeInDuration: const Duration(milliseconds: milliseconds),
+          fadeOutDuration: const Duration(milliseconds: milliseconds),
         ),
       ),
     );
   }
 
   BoxShadow _widgetShadow() {
+    const withOpacity = 0.3;
+    const spreadRadius = 2.0;
+    const blurRadius = 10.0;
+    const offsetDx = 0.0;
+    const offsetDy = 5.0;
+
     return BoxShadow(
-      color: Colors.black.withOpacity(0.3),
-      spreadRadius: 2,
-      blurRadius: 10,
-      offset: const Offset(0, 5),
+      color: Colors.black.withOpacity(withOpacity),
+      spreadRadius: spreadRadius,
+      blurRadius: blurRadius,
+      offset: const Offset(offsetDx, offsetDy,),
     );
   }
 }

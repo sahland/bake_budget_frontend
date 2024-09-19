@@ -1,6 +1,5 @@
 import 'package:bake_budget_frontend/uikit/uikit.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 
 class UpdateCostDialog extends StatefulWidget {
   final String costName;
@@ -8,7 +7,6 @@ class UpdateCostDialog extends StatefulWidget {
 
   final double verticalPadding;
   final double horizontalPadding;
-  final double fontSize;
 
   const UpdateCostDialog({
     super.key,
@@ -16,7 +14,6 @@ class UpdateCostDialog extends StatefulWidget {
     required this.costPrice,
     this.verticalPadding = 100,
     this.horizontalPadding = 20,
-    this.fontSize = 24,
   });
 
   @override
@@ -47,7 +44,9 @@ class _UpdateCostDialogState extends State<UpdateCostDialog> {
           child: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
-              _updateCostTitle(theme),
+              BaseDialogTitle(
+                title: widget.costName,
+              ),
               const SizedBox(
                 height: sizedBoxHeight,
               ),
@@ -71,21 +70,10 @@ class _UpdateCostDialogState extends State<UpdateCostDialog> {
                     title: deleteTitle,
                   ),
                 ],
-              )
+              ),
             ],
           ),
         ),
-      ),
-    );
-  }
-
-  Text _updateCostTitle(ThemeData theme) {
-    return Text(
-      widget.costName,
-      style: GoogleFonts.pacifico(
-        color: theme.secondaryHeaderColor,
-        fontSize: widget.fontSize,
-        fontWeight: FontWeight.w400,
       ),
     );
   }

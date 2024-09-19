@@ -8,7 +8,7 @@ class BaseCheckbox extends StatefulWidget {
   const BaseCheckbox({
     required this.title,
     required this.index,
-    required this.fontSize,
+    this.fontSize = 16,
     super.key,
   });
 
