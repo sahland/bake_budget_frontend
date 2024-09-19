@@ -4,9 +4,15 @@ import 'package:google_fonts/google_fonts.dart';
 
 class OrderDialog extends StatefulWidget {
   final String title;
+
+  final double verticalPadding;
+  final double horizontalPadding;
+
   const OrderDialog({
-    super.key,
     required this.title,
+    this.verticalPadding = 100,
+    this.horizontalPadding = 20,
+    super.key,
   });
 
   @override
@@ -22,41 +28,40 @@ class _OrderDialogState extends State<OrderDialog> {
     const inProgress = 'В процессе';
     const completed = 'Завершён';
     const cancelled = 'Отменён';
+    const padding = 16.0;
+    const withOpacity = 0.8;
+    const fontSize = 16.0;
 
     final theme = Theme.of(context);
 
     return Dialog(
       backgroundColor: theme.cardColor,
-      insetPadding: const EdgeInsets.symmetric(
-        vertical: 100,
-        horizontal: 20,
+      insetPadding: EdgeInsets.symmetric(
+        vertical: widget.verticalPadding,
+        horizontal: widget.horizontalPadding,
       ),
       child: Padding(
-        padding: const EdgeInsets.all(16),
+        padding: const EdgeInsets.all(padding),
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
-            _titleText(theme),
-            _statusText(status, theme),
+            BaseDialogTitle(title: widget.title,),
+            _statusText(status, withOpacity, fontSize, theme,),
             const BaseCheckbox(
               title: notStarted,
               index: 0,
-              fontSize: 16,
             ),
             const BaseCheckbox(
               title: inProgress,
               index: 1,
-              fontSize: 16,
             ),
             const BaseCheckbox(
               title: completed,
               index: 2,
-              fontSize: 16,
             ),
             const BaseCheckbox(
               title: cancelled,
               index: 3,
-              fontSize: 16,
             ),
           ],
         ),
@@ -64,23 +69,12 @@ class _OrderDialogState extends State<OrderDialog> {
     );
   }
 
-  Text _statusText(String status, ThemeData theme) {
+  Text _statusText(String status, double withOpacity, double fontSize, ThemeData theme,) {
     return Text(
       status,
       style: GoogleFonts.pacifico(
-        color: theme.secondaryHeaderColor.withOpacity(0.8),
-        fontSize: 18,
-        fontWeight: FontWeight.w400,
-      ),
-    );
-  }
-
-  Text _titleText(ThemeData theme) {
-    return Text(
-      widget.title,
-      style: GoogleFonts.pacifico(
-        color: theme.secondaryHeaderColor,
-        fontSize: 24,
+        color: theme.secondaryHeaderColor.withOpacity(withOpacity),
+        fontSize: fontSize,
         fontWeight: FontWeight.w400,
       ),
     );
