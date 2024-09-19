@@ -1,6 +1,5 @@
 import 'package:bake_budget_frontend/uikit/uikit.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 
 class UpdateIngredientDialog extends StatefulWidget {
   final String ingredientName;
@@ -8,7 +7,6 @@ class UpdateIngredientDialog extends StatefulWidget {
   final int ingredientPrice;
   final double verticalPadding;
   final double horizontalPadding;
-  final double fontSize;
 
   const UpdateIngredientDialog({
     required this.ingredientName,
@@ -16,7 +14,6 @@ class UpdateIngredientDialog extends StatefulWidget {
     required this.ingredientPrice,
     this.verticalPadding = 100,
     this.horizontalPadding = 20,
-    this.fontSize = 24,
     super.key,
   });
 
@@ -40,14 +37,16 @@ class _UpdateIngredientDialogState extends State<UpdateIngredientDialog> {
     return Dialog(
       backgroundColor: theme.cardColor,
       insetPadding: EdgeInsets.symmetric(
-          vertical: widget.verticalPadding, horizontal: widget.verticalPadding),
+          vertical: widget.verticalPadding, horizontal: widget.verticalPadding,),
       child: SingleChildScrollView(
         child: Padding(
           padding: const EdgeInsets.all(padding),
           child: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
-              _updateDialogTitle(theme),
+              BaseDialogTitle(
+                title: widget.ingredientName,
+              ),
               const SizedBox(
                 height: sizedBoxHeight,
               ),
@@ -74,23 +73,12 @@ class _UpdateIngredientDialogState extends State<UpdateIngredientDialog> {
                   ),
                   BaseElevatedButton(
                     title: deleteTitle,
-                  )
+                  ),
                 ],
-              )
+              ),
             ],
           ),
         ),
-      ),
-    );
-  }
-
-  Text _updateDialogTitle(ThemeData theme) {
-    return Text(
-      widget.ingredientName,
-      style: GoogleFonts.pacifico(
-        color: theme.secondaryHeaderColor,
-        fontSize: widget.fontSize,
-        fontWeight: FontWeight.w400,
       ),
     );
   }
