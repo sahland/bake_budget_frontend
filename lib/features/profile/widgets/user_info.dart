@@ -1,12 +1,21 @@
+import 'package:bake_budget_frontend/features/profile/widgets/widgets.dart';
 import 'package:flutter/material.dart';
 
 class UserInfo extends StatefulWidget {
   final String username;
   final String userMail;
+
+  final double width;
+  final double height;
+  final double borderRadius;
+
   const UserInfo({
-    super.key,
     required this.username,
     required this.userMail,
+    this.width = 350,
+    this.height = 400,
+    this.borderRadius = 10,
+    super.key,
   });
 
   @override
@@ -16,39 +25,59 @@ class UserInfo extends StatefulWidget {
 class _UserInfoState extends State<UserInfo> {
   @override
   Widget build(BuildContext context) {
+    const newPasswordTitle = 'Сменить пароль';
+    const leaveAccount = 'Выйти из аккаунта';
+    const avatarPath = './assets/images/povar.png';
+
+    const usernameFontSize = 25.0;
+    const mailFontSize = 16.0;
+    const topSizedBoxHeight = 65.0;
+    const middleSizedBoxHeight = 70.0;
+    const lowSizedBoxHeight = 25.0;
+
     final theme = Theme.of(context);
 
     return Stack(
       children: [
-        // Container(
-        //   width: double.infinity,
-        //   height: 140,
-        //   color: theme.cardColor,
-        // ),
         Column(
           children: [
-            const SizedBox(height: 65),
+            const SizedBox(
+              height: topSizedBoxHeight,
+            ),
             Center(
               child: Container(
-                width: 350,
-                height: 400,
+                width: widget.width,
+                height: widget.height,
                 decoration: BoxDecoration(
-                  borderRadius: const BorderRadius.all(
-                    Radius.circular(10),
+                  borderRadius: BorderRadius.all(
+                    Radius.circular(widget.borderRadius),
                   ),
                   color: theme.dialogBackgroundColor,
                 ),
                 child: Column(
                   children: [
-                    const SizedBox(height: 70),
-                    _username(theme),
-                    _userMail(theme),
-                    const Spacer(),
-                    _profileButton(theme, 'Сменить пароль'),
-                    _profileButton(theme, 'Приобрести подписку'),
-                    _profileButton(theme, 'Выйти'),
                     const SizedBox(
-                      height: 25,
+                      height: middleSizedBoxHeight,
+                    ),
+                    _infoText(
+                      theme,
+                      widget.username,
+                      usernameFontSize,
+                    ),
+                    _infoText(
+                      theme,
+                      widget.userMail,
+                      mailFontSize,
+                    ),
+                    const Spacer(),
+                    const ProfileButton(
+                      title: newPasswordTitle,
+                    ),
+                    const ProfileButton(
+                      title: leaveAccount,
+                    ),
+                    const SizedBox(
+                      height: lowSizedBoxHeight,
                     )
                   ],
                 ),
@@ -56,74 +85,37 @@ class _UserInfoState extends State<UserInfo> {
             ),
           ],
         ),
-        const Column(
-          children: [
-            SizedBox(height: 10),
-            Center(
-              child: CircleAvatar(
-                radius: 60,
-                backgroundImage: AssetImage(
-                  './assets/images/povar.png',
-                ),
-              ),
-            ),
-          ],
+        _userAvatar(
+          avatarPath,
         ),
       ],
     );
   }
 
-  Text _userMail(ThemeData theme) {
-    return Text(
-      widget.userMail,
-      style: TextStyle(
-        color: theme.secondaryHeaderColor,
-        fontSize: 16,
-      ),
-    );
-  }
+  Column _userAvatar(String imagePath, [double avatarRadius = 60]) {
+    const sizedBoxHeight = 10.0;
 
-  Text _username(ThemeData theme) {
-    return Text(
-      widget.username,
-      style: TextStyle(
-        color: theme.secondaryHeaderColor,
-        fontSize: 25,
-      ),
-    );
-  }
-
-  Padding _profileButton(ThemeData theme, String title) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(
-        vertical: 5,
-        horizontal: 10,
-      ),
-      child: ElevatedButton(
-        style: ElevatedButton.styleFrom(
-          backgroundColor: theme.cardColor,
-          elevation: 10,
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(25),
-          ),
-        ),
-        onPressed: () {},
-        child: Container(
-          width: 250,
-          height: 60,
-          padding: EdgeInsets.zero,
-          child: Align(
-            alignment: Alignment.center,
-            child: Text(
-              title,
-              style: TextStyle(
-                color: theme.secondaryHeaderColor,
-                fontSize: 18,
-                fontWeight: FontWeight.w500,
-              ),
+    return Column(
+      children: [
+        const SizedBox(height: sizedBoxHeight),
+        Center(
+          child: CircleAvatar(
+            radius: avatarRadius,
+            backgroundImage: AssetImage(
+              imagePath,
             ),
           ),
         ),
+      ],
+    );
+  }
+
+  Text _infoText(ThemeData theme, String text, double fontSize) {
+    return Text(
+      text,
+      style: TextStyle(
+        color: theme.secondaryHeaderColor,
+        fontSize: fontSize,
       ),
     );
   }

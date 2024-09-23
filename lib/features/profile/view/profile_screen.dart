@@ -14,6 +14,7 @@ class ProfileScreen extends StatefulWidget {
 class _ProfileScreenState extends State<ProfileScreen> {
   @override
   Widget build(BuildContext context) {
+    const title = 'Мой профиль';
     const toolbarHeight = 70.0;
     const elevation = 80.0;
 
@@ -32,7 +33,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
             backgroundColor: theme.cardColor,
             surfaceTintColor: theme.cardColor,
             title: const AppBarTitle(
-              title: 'Мой профиль',
+              title: title,
             ),
           ),
           const SliverToBoxAdapter(
