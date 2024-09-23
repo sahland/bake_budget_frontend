@@ -92,21 +92,21 @@ class _OrdersScreenState extends State<OrdersScreen> {
     );
   }
 
-  Container _orderTabs() {
-    const height = 60.0;
-    const margin = 10.0;
-    const padding = 2.0;
-    const fontSize = 20.0;
-
+  Container _orderTabs([
+    double height = 60,
+    double margin = 10,
+    double padding = 2,
+    double fontSize = 20,
+  ]) {
     return Container(
       height: height,
-      margin: const EdgeInsets.symmetric(vertical: margin),
+      margin: EdgeInsets.symmetric(vertical: margin),
       child: ListView.builder(
         scrollDirection: Axis.horizontal,
         itemCount: tabTexts.length,
         itemBuilder: (context, index) {
           return Padding(
-            padding: const EdgeInsets.symmetric(horizontal: padding),
+            padding: EdgeInsets.symmetric(horizontal: padding),
             child: BaseBuildTab(
               index: index,
               text: tabTexts[index],

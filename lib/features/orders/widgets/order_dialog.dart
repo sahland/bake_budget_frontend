@@ -4,7 +4,6 @@ import 'package:google_fonts/google_fonts.dart';
 
 class OrderDialog extends StatefulWidget {
   final String title;
-
   final double verticalPadding;
   final double horizontalPadding;
 
@@ -20,17 +19,16 @@ class OrderDialog extends StatefulWidget {
 }
 
 class _OrderDialogState extends State<OrderDialog> {
+  int selectedStatusIndex = 0; // Хранение выбранного статуса
+
   @override
   Widget build(BuildContext context) {
     const status = 'Статус заказа';
-
     const notStarted = 'Не начат';
     const inProgress = 'В процессе';
     const completed = 'Завершён';
     const cancelled = 'Отменён';
     const padding = 16.0;
-    const withOpacity = 0.8;
-    const fontSize = 16.0;
 
     final theme = Theme.of(context);
 
@@ -45,23 +43,55 @@ class _OrderDialogState extends State<OrderDialog> {
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
-            BaseDialogTitle(title: widget.title,),
-            _statusText(status, withOpacity, fontSize, theme,),
-            const BaseCheckbox(
+            BaseDialogTitle(title: widget.title),
+            _statusText(theme, status),
+            BaseCheckbox(
               title: notStarted,
               index: 0,
+              isSelected: selectedStatusIndex == 0,
+              onChanged: (value) {
+                if (value != null && value) {
+                  setState(() {
+                    selectedStatusIndex = 0;
+                  });
+                }
+              },
             ),
-            const BaseCheckbox(
+            BaseCheckbox(
               title: inProgress,
               index: 1,
+              isSelected: selectedStatusIndex == 1,
+              onChanged: (value) {
+                if (value != null && value) {
+                  setState(() {
+                    selectedStatusIndex = 1;
+                  });
+                }
+              },
             ),
-            const BaseCheckbox(
+            BaseCheckbox(
               title: completed,
               index: 2,
+              isSelected: selectedStatusIndex == 2,
+              onChanged: (value) {
+                if (value != null && value) {
+                  setState(() {
+                    selectedStatusIndex = 2;
+                  });
+                }
+              },
             ),
-            const BaseCheckbox(
+            BaseCheckbox(
               title: cancelled,
               index: 3,
+              isSelected: selectedStatusIndex == 3,
+              onChanged: (value) {
+                if (value != null && value) {
+                  setState(() {
+                    selectedStatusIndex = 3;
+                  });
+                }
+              },
             ),
           ],
         ),
@@ -69,7 +99,7 @@ class _OrderDialogState extends State<OrderDialog> {
     );
   }
 
-  Text _statusText(String status, double withOpacity, double fontSize, ThemeData theme,) {
+  Text _statusText(ThemeData theme, String status, [double withOpacity = 0.8, double fontSize = 16]) {
     return Text(
       status,
       style: GoogleFonts.pacifico(
@@ -80,3 +110,4 @@ class _OrderDialogState extends State<OrderDialog> {
     );
   }
 }
+
