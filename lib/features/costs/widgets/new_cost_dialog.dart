@@ -39,9 +39,7 @@ class _NewCostDialogState extends State<NewCostDialog> {
           child: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
-              BaseDialogTitle(
-                title: title
-              ),
+              BaseDialogTitle(title: title),
               SizedBox(
                 height: sizedBoxHeight,
               ),

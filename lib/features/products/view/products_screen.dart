@@ -115,7 +115,9 @@ class _SliverAppBarDelegate extends SliverPersistentHeaderDelegate {
   final Widget child;
 
   _SliverAppBarDelegate({
+    // ignore: unused_element
     this.minHeight = 110.0,
+    // ignore: unused_element
     this.maxHeight = 120.0,
     required this.child,
   });

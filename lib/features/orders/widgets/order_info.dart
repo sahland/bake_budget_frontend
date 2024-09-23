@@ -37,7 +37,10 @@ class OrderInfo extends StatelessWidget {
     return GestureDetector(
       onTap: onTap ?? () {},
       child: Container(
-        margin: EdgeInsets.symmetric(vertical: verticalMargin, horizontal: horizontalMargin,),
+        margin: EdgeInsets.symmetric(
+          vertical: verticalMargin,
+          horizontal: horizontalMargin,
+        ),
         decoration: BoxDecoration(
           color: Colors.white,
           borderRadius: BorderRadius.circular(borderRadius),
@@ -82,7 +85,12 @@ class OrderInfo extends StatelessWidget {
     );
   }
 
-  Container _orderText(ThemeData theme, String text, BoxDecoration decoration) {
+  Container _orderText(
+    ThemeData theme,
+    String text,
+    BoxDecoration decoration, [
+    double fontSize = 16,
+  ]) {
     const verticalPadding = 6.0;
 
     return Container(
@@ -93,16 +101,14 @@ class OrderInfo extends StatelessWidget {
         textAlign: TextAlign.center,
         style: GoogleFonts.poppins(
           color: Colors.white,
-          fontSize: 16,
+          fontSize: fontSize,
           fontWeight: FontWeight.w500,
         ),
       ),
     );
   }
 
-  Expanded _productImage(String placeholder) {
-    const milliseconds = 300;
-
+  Expanded _productImage(String placeholder, [int milliseconds = 300]) {
     return Expanded(
       child: ClipRRect(
         borderRadius: BorderRadius.only(
@@ -115,25 +121,27 @@ class OrderInfo extends StatelessWidget {
           fit: BoxFit.cover,
           width: double.infinity,
           height: double.infinity,
-          fadeInDuration: const Duration(milliseconds: milliseconds),
-          fadeOutDuration: const Duration(milliseconds: milliseconds),
+          fadeInDuration: Duration(milliseconds: milliseconds),
+          fadeOutDuration: Duration(milliseconds: milliseconds),
         ),
       ),
     );
   }
 
-  BoxShadow _widgetShadow() {
-    const withOpacity = 0.3;
+  BoxShadow _widgetShadow([double opacity = 0.3]) {
     const spreadRadius = 2.0;
     const blurRadius = 10.0;
     const offsetDx = 0.0;
     const offsetDy = 5.0;
 
     return BoxShadow(
-      color: Colors.black.withOpacity(withOpacity),
+      color: Colors.black.withOpacity(opacity),
       spreadRadius: spreadRadius,
       blurRadius: blurRadius,
-      offset: const Offset(offsetDx, offsetDy,),
+      offset: const Offset(
+        offsetDx,
+        offsetDy,
+      ),
     );
   }
 }

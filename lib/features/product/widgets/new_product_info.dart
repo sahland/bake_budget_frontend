@@ -37,12 +37,17 @@ class _NewProductInfoState extends State<NewProductInfo> {
     final theme = Theme.of(context);
 
     return Padding(
-      padding: EdgeInsets.symmetric(vertical: widget.verticalPadding, horizontal: widget.horizontalPadding,),
+      padding: EdgeInsets.symmetric(
+        vertical: widget.verticalPadding,
+        horizontal: widget.horizontalPadding,
+      ),
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           _productImage(theme),
-          const SizedBox(width: sizedBoxWidth,),
+          const SizedBox(
+            width: sizedBoxWidth,
+          ),
           _productFields(),
         ],
       ),
@@ -61,9 +66,11 @@ class _NewProductInfoState extends State<NewProductInfo> {
     );
   }
 
-  Widget _productImage(ThemeData theme) {
+  Widget _productImage(
+    ThemeData theme, [
+    double borderRadius = 8,
+  ]) {
     const sizedBoxHeight = 11.0;
-    const borderRadius = 8.0;
 
     return Column(
       children: [
@@ -76,14 +83,18 @@ class _NewProductInfoState extends State<NewProductInfo> {
             width: widget.width,
             height: widget.height,
             decoration: BoxDecoration(
-              borderRadius: const BorderRadius.all(Radius.circular(borderRadius),),
+              borderRadius: BorderRadius.all(
+                Radius.circular(borderRadius),
+              ),
               color: theme.dialogBackgroundColor,
               boxShadow: [
                 _shadowButton(),
               ],
             ),
             child: ClipRRect(
-              borderRadius: BorderRadius.circular(borderRadius,),
+              borderRadius: BorderRadius.circular(
+                borderRadius,
+              ),
               child: Image.network(
                 widget.imagePath,
                 fit: BoxFit.cover,
@@ -95,15 +106,16 @@ class _NewProductInfoState extends State<NewProductInfo> {
     );
   }
 
-  BoxShadow _shadowButton() {
-    const withOpacity = 0.3;
+  BoxShadow _shadowButton([double opacity = 0.3]) {
     const spreadRadius = 2.0;
     const blurRadius = 8.0;
     const offsetDx = 0.0;
     const offsetDy = 3.0;
 
     return BoxShadow(
-      color: Colors.black.withOpacity(withOpacity,),
+      color: Colors.black.withOpacity(
+        opacity,
+      ),
       spreadRadius: spreadRadius,
       blurRadius: blurRadius,
       offset: const Offset(offsetDx, offsetDy),

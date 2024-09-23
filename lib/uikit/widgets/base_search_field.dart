@@ -4,18 +4,28 @@ import 'package:google_fonts/google_fonts.dart';
 class BaseSearchField extends StatelessWidget {
   final String title;
 
+  final double horizontalPadding;
+  final double verticalPadding;
+
   const BaseSearchField({
-    super.key,
     required this.title,
+    this.horizontalPadding = 16,
+    this.verticalPadding = 5,
+    super.key,
   });
 
   @override
   Widget build(BuildContext context) {
+    const sizedBoxHeight = 25.0;
+
     return Column(
       children: [
-        const SizedBox(height: 25),
+        const SizedBox(height: sizedBoxHeight),
         Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 5),
+          padding: EdgeInsets.symmetric(
+            horizontal: horizontalPadding,
+            vertical: verticalPadding,
+          ),
           child: _buildSearchContainer(context),
         ),
       ],
@@ -23,16 +33,24 @@ class BaseSearchField extends StatelessWidget {
   }
 
   // Метод для создания контейнера с полем поиска
-  Widget _buildSearchContainer(BuildContext context) {
+  Widget _buildSearchContainer(
+    BuildContext context, [
+    double height = 75,
+    double horizontalPadding = 10,
+  ]) {
+    const sizedBoxWidth = 10.0;
+
     final theme = Theme.of(context);
 
     return Container(
-      height: 75, // Фиксированная высота контейнера
-      padding: const EdgeInsets.symmetric(horizontal: 10),
+      height: height,
+      padding: EdgeInsets.symmetric(
+        horizontal: horizontalPadding,
+      ),
       decoration: _buildBoxDecoration(theme),
       child: Row(
         children: [
-          const SizedBox(width: 10),
+          const SizedBox(width: sizedBoxWidth),
           _buildSearchIcon(theme),
           _buildSearchField(theme),
         ],
@@ -50,52 +68,61 @@ class BaseSearchField extends StatelessWidget {
 
   // Метод для создания текстового поля поиска
   Widget _buildSearchField(ThemeData theme) {
+    const horizontalPadding = 5.0;
+
     return Expanded(
       child: TextField(
         decoration: InputDecoration(
           hintText: title,
-          hintStyle: _buildHintTextStyle(theme),
-          contentPadding: const EdgeInsets.symmetric(horizontal: 5),
+          hintStyle: _buildSearchText(theme),
+          contentPadding: const EdgeInsets.symmetric(
+            horizontal: horizontalPadding,
+          ),
           enabledBorder: const OutlineInputBorder(borderSide: BorderSide.none),
           border: const OutlineInputBorder(borderSide: BorderSide.none),
         ),
-        style: _buildTextStyle(theme),
+        style: _buildSearchText(theme),
       ),
     );
   }
 
   // Метод для создания BoxDecoration с тенью
-  BoxDecoration _buildBoxDecoration(ThemeData theme) {
+  BoxDecoration _buildBoxDecoration(
+    ThemeData theme, [
+    double borderRadius = 15,
+    double opacity = 0.3,
+  ]) {
+    const blurRadius = 12.0;
+    const offsetDx = 0.0;
+    const offsetDy = 4.0;
+
     return BoxDecoration(
       color: theme.dialogBackgroundColor,
-      borderRadius: BorderRadius.circular(15),
+      borderRadius: BorderRadius.circular(borderRadius),
       boxShadow: [
         BoxShadow(
-          color: Colors.black.withOpacity(0.3),
-          blurRadius: 12,
-          offset: const Offset(0, 4),
+          color: Colors.black.withOpacity(opacity),
+          blurRadius: blurRadius,
+          offset: const Offset(
+            offsetDx,
+            offsetDy,
+          ),
         ),
       ],
     );
   }
 
   // Метод для создания стиля текста в подсказке
-  TextStyle _buildHintTextStyle(ThemeData theme) {
+  TextStyle _buildSearchText(
+    ThemeData theme, [
+    double fontSize = 16,
+    double letterSpacing = 0.1,
+  ]) {
     return GoogleFonts.poppins(
       color: theme.secondaryHeaderColor,
-      fontSize: 16,
+      fontSize: fontSize,
       fontWeight: FontWeight.w400,
-      letterSpacing: 0.1,
-    );
-  }
-
-  // Метод для создания стиля текста в поле ввода
-  TextStyle _buildTextStyle(ThemeData theme) {
-    return GoogleFonts.poppins(
-      color: theme.secondaryHeaderColor,
-      fontSize: 16,
-      fontWeight: FontWeight.w400,
-      letterSpacing: 0.1,
+      letterSpacing: letterSpacing,
     );
   }
 }

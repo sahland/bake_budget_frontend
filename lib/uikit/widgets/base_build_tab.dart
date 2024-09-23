@@ -6,6 +6,9 @@ class BaseBuildTab extends StatelessWidget {
   final String text;
   final bool isActive;
   final double fontSize;
+
+  final double verticalPadding;
+  final double horizontalPadding;
   final VoidCallback? onTap;
 
   const BaseBuildTab({
@@ -13,14 +16,14 @@ class BaseBuildTab extends StatelessWidget {
     required this.text,
     required this.isActive,
     required this.fontSize,
+    this.verticalPadding = 10,
+    this.horizontalPadding = 25,
     this.onTap,
     super.key,
   });
 
   @override
   Widget build(BuildContext context) {
-    const verticalPadding = 10.0;
-    const horizontalPadding = 25.0;
     const borderSideWidth = 2.0;
     const textOpacity = 0.5;
 
@@ -29,7 +32,7 @@ class BaseBuildTab extends StatelessWidget {
     return GestureDetector(
       onTap: onTap ?? () {},
       child: Container(
-        padding: const EdgeInsets.symmetric(
+        padding: EdgeInsets.symmetric(
           vertical: verticalPadding,
           horizontal: horizontalPadding,
         ),

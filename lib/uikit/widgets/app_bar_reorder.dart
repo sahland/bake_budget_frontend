@@ -7,8 +7,8 @@ class AppBarReorder extends StatelessWidget {
   final VoidCallback? onPressed;
 
   const AppBarReorder({
-    required this.width,
-    required this.height,
+    this.width = 18.67,
+    this.height = 14,
     this.onPressed,
     super.key,
   });
@@ -25,8 +25,6 @@ class AppBarReorder extends StatelessWidget {
           },
       icon: SvgPicture.asset(
         imagePath,
-        // width: 18.67,
-        // height: 14,
         width: width,
         height: height,
         // ignore: deprecated_member_use
