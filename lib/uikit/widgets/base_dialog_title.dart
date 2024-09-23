@@ -5,7 +5,6 @@ class BaseDialogTitle extends StatelessWidget {
   final String title;
   final double fontSize;
   final FontWeight fontWeight;
-  
 
   const BaseDialogTitle({
     required this.title,
@@ -17,7 +16,7 @@ class BaseDialogTitle extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
-    
+
     return Text(
       title,
       style: GoogleFonts.pacifico(

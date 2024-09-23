@@ -4,6 +4,11 @@ class UserIngredientButton extends StatefulWidget {
   final String ingredientName;
   final int ingredientWeight;
   final int ingredientPrice;
+
+  final double verticalPadding;
+  final double horizontalPadding;
+  final double elevatedButtonWidth;
+  final double elevatedButtonHeight;
   final VoidCallback? onPressed;
 
   const UserIngredientButton({
@@ -11,6 +16,10 @@ class UserIngredientButton extends StatefulWidget {
     required this.ingredientName,
     required this.ingredientWeight,
     required this.ingredientPrice,
+    this.verticalPadding = 5,
+    this.horizontalPadding = 10,
+    this.elevatedButtonWidth = double.infinity,
+    this.elevatedButtonHeight = 60,
     this.onPressed,
   });
 
@@ -21,71 +30,58 @@ class UserIngredientButton extends StatefulWidget {
 class _UserIngredientButtonState extends State<UserIngredientButton> {
   @override
   Widget build(BuildContext context) {
+    const elevated = 10.0;
+
+    final ingredientWeightTitle = '${widget.ingredientWeight} гр.';
+    final ingredientPriceTitle = '${widget.ingredientPrice} руб.';
     final theme = Theme.of(context);
 
     return Padding(
-      padding: const EdgeInsets.symmetric(
-        vertical: 5,
-        horizontal: 10,
+      padding: EdgeInsets.symmetric(
+        vertical: widget.verticalPadding,
+        horizontal: widget.horizontalPadding,
       ),
       child: ElevatedButton(
         onPressed: widget.onPressed ?? () {},
         style: ElevatedButton.styleFrom(
           backgroundColor: theme.dialogBackgroundColor,
-          elevation: 10,
-          minimumSize: const Size(
-            double.infinity,
-            60,
+          elevation: elevated,
+          minimumSize: Size(
+            widget.elevatedButtonWidth,
+            widget.elevatedButtonHeight,
           ),
         ),
         child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            _ingredientName(theme),
-            _ingredientWeight(theme),
-            _ingredientPrice(theme),
+            _ingredientText(theme, widget.ingredientName),
+            Expanded(
+              child: Center(
+                child: _ingredientText(theme, ingredientWeightTitle),
+              ),
+            ),
+            _ingredientText(theme, ingredientPriceTitle),
           ],
         ),
       ),
     );
   }
 
-  Text _ingredientPrice(ThemeData theme) {
+  Text _ingredientText(
+    ThemeData theme,
+    String title, [
+    double fontSize = 16,
+    int maxLines = 1,
+  ]) {
     return Text(
-      '${widget.ingredientPrice} руб.',
+      title,
       style: TextStyle(
         color: theme.secondaryHeaderColor,
-        fontSize: 16,
+        fontSize: fontSize,
       ),
       overflow: TextOverflow.ellipsis,
-      maxLines: 1,
-    );
-  }
-
-  Widget _ingredientWeight(ThemeData theme) {
-    return Expanded(
-      child: Center(
-        child: Text(
-          '${widget.ingredientWeight} гр.',
-          style: TextStyle(
-            color: theme.secondaryHeaderColor,
-            fontSize: 16,
-          ),
-          overflow: TextOverflow.ellipsis,
-          maxLines: 1,
-        ),
-      ),
-    );
-  }
-
-  Text _ingredientName(ThemeData theme) {
-    return Text(
-      widget.ingredientName,
-      style: TextStyle(
-        color: theme.secondaryHeaderColor,
-        fontSize: 16,
-      ),
-      overflow: TextOverflow.ellipsis,
-      maxLines: 1,
+      maxLines: maxLines,
     );
   }
 }
+

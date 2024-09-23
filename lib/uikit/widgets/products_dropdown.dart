@@ -4,9 +4,16 @@ import 'package:google_fonts/google_fonts.dart';
 class ProductsDropdown extends StatefulWidget {
   final List<String> productsList;
 
+  final double iconSize;
+  final double verticalPadding;
+  final double horizontalPadding;
+
   const ProductsDropdown({
-    super.key,
     required this.productsList,
+    this.iconSize = 35,
+    this.verticalPadding = 10,
+    this.horizontalPadding = 20,
+    super.key,
   });
 
   @override
@@ -23,13 +30,13 @@ class _ProductsDropdownState extends State<ProductsDropdown> {
     String? dropdownValue;
 
     return Padding(
-      padding: const EdgeInsets.symmetric(
-        vertical: 10,
-        horizontal: 20,
+      padding: EdgeInsets.symmetric(
+        vertical: widget.verticalPadding,
+        horizontal: widget.horizontalPadding,
       ),
       child: DropdownButtonFormField(
         icon: _downIcon(theme),
-        iconSize: 35,
+        iconSize: widget.iconSize,
         decoration: _dropdownDecoration(theme),
         hint: const Text(
           title,
@@ -61,10 +68,10 @@ class _ProductsDropdownState extends State<ProductsDropdown> {
     );
   }
 
-  TextStyle _dropdownTextStyle(ThemeData theme) {
+  TextStyle _dropdownTextStyle(ThemeData theme, [double fontSize = 15]) {
     return GoogleFonts.poppins(
       color: theme.secondaryHeaderColor,
-      fontSize: 16,
+      fontSize: fontSize,
       fontWeight: FontWeight.w500,
     );
   }

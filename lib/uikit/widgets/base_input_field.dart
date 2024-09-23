@@ -66,8 +66,11 @@ class BaseInputField extends StatelessWidget {
     );
   }
 
-  BoxDecoration _buildBoxDecoration(ThemeData theme, double borderRadius) {
-    const opacity = 0.3;
+  BoxDecoration _buildBoxDecoration(
+    ThemeData theme,
+    double borderRadius, [
+    double opacity = 0.3,
+  ]) {
     const blurRadius = 12.0;
     const offsetDx = 0.0;
     const offsetDy = 4.0;
@@ -88,9 +91,11 @@ class BaseInputField extends StatelessWidget {
     );
   }
 
-  TextStyle _buildHintTextStyle(ThemeData theme, double fontSize) {
-    const letterSpacing = 0.1;
-
+  TextStyle _buildHintTextStyle(
+    ThemeData theme,
+    double fontSize, [
+    double letterSpacing = 0.1,
+  ]) {
     return GoogleFonts.poppins(
       color: theme.secondaryHeaderColor,
       fontSize: fontSize,
