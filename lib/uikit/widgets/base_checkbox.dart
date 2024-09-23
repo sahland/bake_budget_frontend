@@ -31,9 +31,9 @@ class BaseCheckbox extends StatelessWidget {
       ),
       value: isSelected,
       onChanged: onChanged,
-      activeColor: theme.primaryColor, // Цвет чекбокса, когда он выбран
-      checkColor: theme.secondaryHeaderColor,  // Цвет галочки (если требуется)
-      side: BorderSide(color: theme.secondaryHeaderColor), // Цвет рамки чекбокса
+      activeColor: theme.primaryColor,
+      checkColor: theme.secondaryHeaderColor,
+      side: BorderSide(color: theme.secondaryHeaderColor),
       controlAffinity: ListTileControlAffinity.leading,
     );
   }
