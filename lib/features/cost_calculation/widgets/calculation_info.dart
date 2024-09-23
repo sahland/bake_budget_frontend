@@ -16,7 +16,7 @@ class CalculationInfo extends StatelessWidget {
   const CalculationInfo({
     required this.costPrice,
     required this.finalCost,
-    this.fontSize = 22,
+    this.fontSize = 20,
     this.width = 370,
     this.height = 100,
     this.paddingVertical = 5,
@@ -30,7 +30,7 @@ class CalculationInfo extends StatelessWidget {
     const calculationTitle = 'Рассчитать';
     const orderTitle = 'Создать заказ';
     const sizedBoxWidth = 20.0;
-    const sizedBoxHeight = 10.0;
+    const sizedBoxHeight = 15.0;
 
     final costPriceTitle = 'Себестоимость: $costPrice руб.';
     final finalCostTitle = 'Конечная стоимость: $finalCost руб.';
@@ -83,9 +83,7 @@ class CalculationInfo extends StatelessWidget {
     );
   }
 
-  Text _infoText(String text) {
-    const maxLine = 1;
-
+  Text _infoText(String text, [int maxLine = 1]) {
     return Text(
       text,
       style: GoogleFonts.poppins(
@@ -98,8 +96,7 @@ class CalculationInfo extends StatelessWidget {
     );
   }
 
-  BoxShadow _widgetShadow() {
-    const opacity = 0.3;
+  BoxShadow _widgetShadow([double opacity = 0.3]) {
     const spreadRadius = 2.0;
     const blurRadius = 10.0;
     const offsetDx = 0.0;
