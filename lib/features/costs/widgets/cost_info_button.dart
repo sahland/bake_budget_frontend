@@ -70,11 +70,14 @@ class _CostInfoButtonState extends State<CostInfoButton> {
     );
   }
 
-  Text _costInfoText(ThemeData theme, String title, double fontSize) {
-    const maxLines = 1;
-
+  Text _costInfoText(
+    ThemeData theme,
+    String title,
+    double fontSize, [
+    int maxLines = 1,
+  ]) {
     return Text(
-      widget.costName,
+      title,
       style: TextStyle(
         color: theme.secondaryHeaderColor,
         fontSize: fontSize,
