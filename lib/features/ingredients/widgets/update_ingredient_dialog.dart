@@ -37,7 +37,9 @@ class _UpdateIngredientDialogState extends State<UpdateIngredientDialog> {
     return Dialog(
       backgroundColor: theme.cardColor,
       insetPadding: EdgeInsets.symmetric(
-          vertical: widget.verticalPadding, horizontal: widget.verticalPadding,),
+        vertical: widget.verticalPadding,
+        horizontal: widget.horizontalPadding,
+      ),
       child: SingleChildScrollView(
         child: Padding(
           padding: const EdgeInsets.all(padding),
