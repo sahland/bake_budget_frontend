@@ -93,6 +93,12 @@ abstract class _$AppRouter extends RootStackRouter {
         child: WrappedRoute(child: const ProfileWrapperScreen()),
       );
     },
+    ReportRoute.name: (routeData) {
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: const ReportScreen(),
+      );
+    },
     TapeWrapperRoute.name: (routeData) {
       return AutoRoutePage<dynamic>(
         routeData: routeData,
@@ -300,6 +306,20 @@ class ProfileWrapperRoute extends PageRouteInfo<void> {
         );
 
   static const String name = 'ProfileWrapperRoute';
+
+  static const PageInfo<void> page = PageInfo<void>(name);
+}
+
+/// generated route for
+/// [ReportScreen]
+class ReportRoute extends PageRouteInfo<void> {
+  const ReportRoute({List<PageRouteInfo>? children})
+      : super(
+          ReportRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'ReportRoute';
 
   static const PageInfo<void> page = PageInfo<void>(name);
 }

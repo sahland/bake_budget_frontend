@@ -18,6 +18,9 @@ class AdditionalRoutes {
       AutoRoute(
         page: OrdersRoute.page,
       ),
+      AutoRoute(
+        page: ReportRoute.page,
+      )
     ],
   );
 }

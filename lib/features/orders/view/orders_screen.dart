@@ -32,6 +32,8 @@ class _OrdersScreenState extends State<OrdersScreen> {
     const title = 'Заказы';
     const toolbarHeight = 70.0;
     const elevation = 80.0;
+    const horizontalSliverPadding = 10.0;
+    const verticalSliverPadding = 20.0;
 
     final theme = Theme.of(context);
 
@@ -57,7 +59,10 @@ class _OrdersScreenState extends State<OrdersScreen> {
             child: _orderTabs(),
           ),
           SliverPadding(
-            padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 20),
+            padding: const EdgeInsets.symmetric(
+              horizontal: horizontalSliverPadding,
+              vertical: verticalSliverPadding,
+            ),
             sliver: SliverGrid(
               gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                 crossAxisCount: 2,

@@ -99,7 +99,8 @@ class _OrderDialogState extends State<OrderDialog> {
     );
   }
 
-  Text _statusText(ThemeData theme, String status, [double withOpacity = 0.8, double fontSize = 16]) {
+  Text _statusText(ThemeData theme, String status,
+      [double withOpacity = 0.8, double fontSize = 16]) {
     return Text(
       status,
       style: GoogleFonts.pacifico(
@@ -110,4 +111,3 @@ class _OrderDialogState extends State<OrderDialog> {
     );
   }
 }
-

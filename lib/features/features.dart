@@ -7,5 +7,6 @@ export 'orders/orders.dart';
 export 'product/product.dart';
 export 'profile/profile.dart';
 export 'products/products.dart';
+export 'reports/report.dart';
 export 'theme/theme.dart';
 export 'welcome/welcome.dart';
