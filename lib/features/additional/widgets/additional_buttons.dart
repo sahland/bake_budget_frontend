@@ -54,7 +54,9 @@ class _AdditionalButtonsState extends State<AdditionalButtons> {
           title: ordersTitle,
         ),
         BaseLongButton(
-          onPressed: () {},
+          onPressed: () {
+            context.router.push(const ReportRoute());
+          },
           title: reportsTitle,
         ),
       ],
