@@ -21,13 +21,13 @@ class ProductsDropdown extends StatefulWidget {
 }
 
 class _ProductsDropdownState extends State<ProductsDropdown> {
+  String? dropdownValue;
+
   @override
   Widget build(BuildContext context) {
     const title = 'Выберите изделие (1000 гр.)';
 
     final theme = Theme.of(context);
-
-    String? dropdownValue;
 
     return Padding(
       padding: EdgeInsets.symmetric(
@@ -38,12 +38,16 @@ class _ProductsDropdownState extends State<ProductsDropdown> {
         icon: _downIcon(theme),
         iconSize: widget.iconSize,
         decoration: _dropdownDecoration(theme),
-        hint: const Text(
+        hint: Text(
           title,
+          style: _dropdownTextStyle(
+              theme), // Заголовок всегда цвета theme.secondaryHeaderColor
         ),
         style: _dropdownTextStyle(theme),
         dropdownColor: theme.cardColor,
         value: dropdownValue,
+        isExpanded: true, // Оставляем список развернутым
+        isDense: true, // Уменьшаем вертикальные отступы для плотности
         onChanged: (String? newValue) {
           setState(() => dropdownValue = newValue!);
         },
@@ -76,19 +80,22 @@ class _ProductsDropdownState extends State<ProductsDropdown> {
     );
   }
 
-  InputDecoration _dropdownDecoration(ThemeData theme) {
+  InputDecoration _dropdownDecoration(
+    ThemeData theme, [
+    double borderRadius = 10,
+  ]) {
     return InputDecoration(
       fillColor: theme.dialogBackgroundColor,
       filled: true,
       hintStyle: _dropdownTextStyle(theme),
       enabledBorder: OutlineInputBorder(
-        borderRadius: BorderRadius.circular(10),
+        borderRadius: BorderRadius.circular(borderRadius),
         borderSide: BorderSide(
           color: theme.dialogBackgroundColor,
         ),
       ),
       focusedBorder: OutlineInputBorder(
-        borderRadius: BorderRadius.circular(10),
+        borderRadius: BorderRadius.circular(borderRadius),
         borderSide: BorderSide(
           color: theme.dialogBackgroundColor,
         ),
