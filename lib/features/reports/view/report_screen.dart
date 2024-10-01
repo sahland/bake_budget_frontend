@@ -38,8 +38,18 @@ class _ReportScreenState extends State<ReportScreen> {
             ),
             leading: const LeadingPop(),
           ),
-          const SliverToBoxAdapter(child: DateRangePicker(),),
-          const SliverToBoxAdapter(child: ReportButtons(),),
+          const SliverToBoxAdapter(
+            child: DateRangePicker(),
+          ),
+          const SliverToBoxAdapter(
+            child: ReportButtons(
+              orderChartValues: [12, 11, 2],
+              incomeChartValues: [10212.30, 15411.45],
+            ),
+          ),
+          // const SliverToBoxAdapter(
+          //   child: BarChartSample3(),
+          // )
         ],
       ),
     );
