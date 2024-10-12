@@ -1,4 +1,4 @@
-
+export 'auth_response_model.dart';
 export 'calculation_request_model.dart';
 export 'calculation_response_model.dart';
 export 'get_picture_model.dart';
@@ -19,7 +19,3 @@ export 'reset_password_model.dart';
 export 'sign_in_model.dart';
 export 'sign_up_model.dart';
 export 'token_refresh_model.dart';
-
-
-
-
