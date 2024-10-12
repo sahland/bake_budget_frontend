@@ -1,8 +1,10 @@
 export 'additional/additional.dart';
+export 'auth/auth.dart';
 export 'cost_calculation/cost_calculation.dart';
 export 'costs/costs.dart';
 export 'home/home.dart';
 export 'ingredients/ingredients.dart';
+export 'one_show/one_show.dart';
 export 'orders/orders.dart';
 export 'product/product.dart';
 export 'profile/profile.dart';
