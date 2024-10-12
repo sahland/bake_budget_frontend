@@ -1,4 +1,5 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:bake_budget_frontend/data/data.dart';
 import 'package:bake_budget_frontend/router/router.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -12,6 +13,23 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+  final TokenStorage _tokenStorage = TokenStorage();
+
+  @override
+  void initState() {
+    super.initState();
+    _checkAuthentication();
+  }
+
+  void _checkAuthentication() async {
+    final token = await _tokenStorage.getToken();
+    if (token == null) {
+      WidgetsBinding.instance.addPostFrameCallback((_) {
+        AutoRouter.of(context).replace(const AuthRoute());
+      });
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
@@ -70,7 +88,11 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 
   BottomNavigationBarItem _buildNavBarItem(
-      ThemeData theme, String path, int index, TabsRouter tabsRouter) {
+    ThemeData theme,
+    String path,
+    int index,
+    TabsRouter tabsRouter,
+  ) {
     return BottomNavigationBarItem(
         icon: GestureDetector(
           onTap: () => _openPage(index, tabsRouter),

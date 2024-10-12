@@ -6,10 +6,7 @@ part 'orders_api_client.g.dart';
 
 @RestApi(baseUrl: '')
 abstract class OrdersApiClient {
-  factory OrdersApiClient(
-    Dio dio,
-    {String baseUrl}
-  ) = _OrdersApiClient;
+  factory OrdersApiClient(Dio dio, {String baseUrl}) = _OrdersApiClient;
 
   factory OrdersApiClient.create({String? apiUrl}) {
     final dio = Dio();
@@ -55,12 +52,8 @@ abstract class OrdersApiClient {
   Future<OrdersResponseModel> findAllOrders();
 
   @GET('/api/orders/get/{id}')
-  Future<OrdersResponseModel> getOrderByID(
-    @Path('id') int id
-  );
+  Future<OrdersResponseModel> getOrderByID(@Path('id') int id);
 
   @DELETE('/api/orders/delete/{id}')
-  Future<OrdersResponseModel> deleteOrder(
-    @Path('id') int id
-  );
+  Future<OrdersResponseModel> deleteOrder(@Path('id') int id);
 }

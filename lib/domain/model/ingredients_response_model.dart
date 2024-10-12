@@ -7,7 +7,7 @@ part 'ingredients_response_model.g.dart';
 class IngredientsResponseModel extends Equatable {
   const IngredientsResponseModel({
     required this.id,
-    required this.name, 
+    required this.name,
     required this.weight,
     required this.cost,
   });

@@ -1,9 +1,10 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:bake_budget_frontend/features/products/products.dart';
+import 'package:bake_budget_frontend/features/products/widgets/widgets.dart';
 import 'package:bake_budget_frontend/router/router.dart';
 import 'package:bake_budget_frontend/uikit/uikit.dart';
 import 'package:flutter/material.dart';
-
-import '../widgets/widgets.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 @RoutePage()
 class ProductsScreen extends StatefulWidget {
@@ -20,6 +21,8 @@ class _ProductsScreenState extends State<ProductsScreen> {
   void initState() {
     super.initState();
     _scrollController = ScrollController();
+    final productsBloc = BlocProvider.of<ProductsBloc>(context);
+    productsBloc.add(const FindAllProductsEvent());
   }
 
   @override

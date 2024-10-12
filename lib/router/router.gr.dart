@@ -27,6 +27,12 @@ abstract class _$AppRouter extends RootStackRouter {
         child: WrappedRoute(child: const AdditionalWrapperScreen()),
       );
     },
+    AuthRoute.name: (routeData) {
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: const AuthScreen(),
+      );
+    },
     CostCalculationRoute.name: (routeData) {
       return AutoRoutePage<dynamic>(
         routeData: routeData,
@@ -99,6 +105,12 @@ abstract class _$AppRouter extends RootStackRouter {
         child: const ReportScreen(),
       );
     },
+    SplashRoute.name: (routeData) {
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: const SplashScreen(),
+      );
+    },
     TapeWrapperRoute.name: (routeData) {
       return AutoRoutePage<dynamic>(
         routeData: routeData,
@@ -132,6 +144,20 @@ class AdditionalWrapperRoute extends PageRouteInfo<void> {
         );
 
   static const String name = 'AdditionalWrapperRoute';
+
+  static const PageInfo<void> page = PageInfo<void>(name);
+}
+
+/// generated route for
+/// [AuthScreen]
+class AuthRoute extends PageRouteInfo<void> {
+  const AuthRoute({List<PageRouteInfo>? children})
+      : super(
+          AuthRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'AuthRoute';
 
   static const PageInfo<void> page = PageInfo<void>(name);
 }
@@ -320,6 +346,20 @@ class ReportRoute extends PageRouteInfo<void> {
         );
 
   static const String name = 'ReportRoute';
+
+  static const PageInfo<void> page = PageInfo<void>(name);
+}
+
+/// generated route for
+/// [SplashScreen]
+class SplashRoute extends PageRouteInfo<void> {
+  const SplashRoute({List<PageRouteInfo>? children})
+      : super(
+          SplashRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'SplashRoute';
 
   static const PageInfo<void> page = PageInfo<void>(name);
 }

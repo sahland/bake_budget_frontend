@@ -6,7 +6,7 @@ part 'ingredients_request_model.g.dart';
 @JsonSerializable()
 class IngredientsRequestModel extends Equatable {
   const IngredientsRequestModel({
-    required this.name, 
+    required this.name,
     required this.weight,
     required this.cost,
   });

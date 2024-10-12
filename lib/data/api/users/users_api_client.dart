@@ -6,10 +6,7 @@ part 'users_api_client.g.dart';
 
 @RestApi(baseUrl: '')
 abstract class UsersApiClient {
-  factory UsersApiClient(
-    Dio dio,
-    {String baseUrl}
-  ) = _UsersApiClient;
+  factory UsersApiClient(Dio dio, {String baseUrl}) = _UsersApiClient;
 
   factory UsersApiClient.create({String? apiUrl}) {
     final dio = Dio();

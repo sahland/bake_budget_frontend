@@ -15,10 +15,12 @@ class IngredientsInProductRequestModel extends Equatable {
   final int productId;
   final double weight;
 
-  factory IngredientsInProductRequestModel.fromJson(Map<String, dynamic> json) =>
+  factory IngredientsInProductRequestModel.fromJson(
+          Map<String, dynamic> json) =>
       _$IngredientsInProductRequestModelFromJson(json);
 
-  Map<String, dynamic> toJson() => _$IngredientsInProductRequestModelToJson(this);
+  Map<String, dynamic> toJson() =>
+      _$IngredientsInProductRequestModelToJson(this);
 
   @override
   List<Object> get props => [
