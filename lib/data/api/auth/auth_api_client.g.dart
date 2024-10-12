@@ -22,32 +22,16 @@ class _AuthApiClient implements AuthApiClient {
   final ParseErrorLogger? errorLogger;
 
   @override
-  Future<SignUpModel> signUp(
-    String username,
-    String email,
-    String password,
-  ) async {
+  Future<SignUpModel> signUp(Map<String, dynamic> body) async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
-    final _data = FormData();
-    _data.fields.add(MapEntry(
-      'name',
-      username,
-    ));
-    _data.fields.add(MapEntry(
-      'email',
-      email,
-    ));
-    _data.fields.add(MapEntry(
-      'password',
-      password,
-    ));
+    final _data = <String, dynamic>{};
+    _data.addAll(body);
     final _options = _setStreamType<SignUpModel>(Options(
       method: 'POST',
       headers: _headers,
       extra: _extra,
-      contentType: 'multipart/form-data',
     )
         .compose(
           _dio.options,
@@ -72,27 +56,16 @@ class _AuthApiClient implements AuthApiClient {
   }
 
   @override
-  Future<SignInModel> signIn(
-    String email,
-    String password,
-  ) async {
+  Future<AuthResponseModel> signIn(Map<String, dynamic> body) async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
-    final _data = FormData();
-    _data.fields.add(MapEntry(
-      'email',
-      email,
-    ));
-    _data.fields.add(MapEntry(
-      'password',
-      password,
-    ));
-    final _options = _setStreamType<SignInModel>(Options(
+    final _data = <String, dynamic>{};
+    _data.addAll(body);
+    final _options = _setStreamType<AuthResponseModel>(Options(
       method: 'POST',
       headers: _headers,
       extra: _extra,
-      contentType: 'multipart/form-data',
     )
         .compose(
           _dio.options,
@@ -106,9 +79,9 @@ class _AuthApiClient implements AuthApiClient {
           baseUrl,
         )));
     final _result = await _dio.fetch<Map<String, dynamic>>(_options);
-    late SignInModel _value;
+    late AuthResponseModel _value;
     try {
-      _value = SignInModel.fromJson(_result.data!);
+      _value = AuthResponseModel.fromJson(_result.data!);
     } on Object catch (e, s) {
       errorLogger?.logError(e, s, _options);
       rethrow;
@@ -117,20 +90,16 @@ class _AuthApiClient implements AuthApiClient {
   }
 
   @override
-  Future<TokenRefreshModel> refreshToken(String refreshToken) async {
+  Future<TokenRefreshModel> refreshToken(Map<String, dynamic> body) async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
-    final _data = FormData();
-    _data.fields.add(MapEntry(
-      'refreshToken',
-      refreshToken,
-    ));
+    final _data = <String, dynamic>{};
+    _data.addAll(body);
     final _options = _setStreamType<TokenRefreshModel>(Options(
       method: 'POST',
       headers: _headers,
       extra: _extra,
-      contentType: 'multipart/form-data',
     )
         .compose(
           _dio.options,
