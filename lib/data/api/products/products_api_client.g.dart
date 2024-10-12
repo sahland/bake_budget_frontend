@@ -289,7 +289,7 @@ class _ProductsApiClient implements ProductsApiClient {
   }
 
   @override
-  Future<List<ProductsResponseModel>> findAllOrders() async {
+  Future<List<ProductsResponseModel>> findAllProducts() async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};

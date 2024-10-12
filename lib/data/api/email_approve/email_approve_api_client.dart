@@ -5,10 +5,8 @@ part 'email_approve_api_client.g.dart';
 
 @RestApi(baseUrl: '')
 abstract class EmailApproveApiClient {
-  factory EmailApproveApiClient(
-    Dio dio,
-    {String baseUrl}
-  ) = _EmailApproveApiClient;
+  factory EmailApproveApiClient(Dio dio, {String baseUrl}) =
+      _EmailApproveApiClient;
 
   factory EmailApproveApiClient.create({String? apiUrl}) {
     final dio = Dio();
@@ -19,9 +17,7 @@ abstract class EmailApproveApiClient {
   }
 
   @POST('/api/email/sendMail')
-  Future<void> sendMail(
-    @Part(name: 'email') String email
-  );
+  Future<void> sendMail(@Part(name: 'email') String email);
 
   @GET('/api/email/approveLink')
   Future<void> getOrderByID(

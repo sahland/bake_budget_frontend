@@ -6,10 +6,8 @@ part 'password_reset_api_client.g.dart';
 
 @RestApi(baseUrl: '')
 abstract class PasswordResetApiClient {
-  factory PasswordResetApiClient(
-    Dio dio,
-    {String baseUrl}
-  ) = _PasswordResetApiClient;
+  factory PasswordResetApiClient(Dio dio, {String baseUrl}) =
+      _PasswordResetApiClient;
 
   factory PasswordResetApiClient.create({String? apiUrl}) {
     final dio = Dio();

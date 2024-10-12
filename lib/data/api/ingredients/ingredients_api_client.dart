@@ -6,10 +6,8 @@ part 'ingredients_api_client.g.dart';
 
 @RestApi(baseUrl: '')
 abstract class IngredientsApiClient {
-  factory IngredientsApiClient(
-    Dio dio,
-    {String baseUrl}
-  ) = _IngredientsApiClient;
+  factory IngredientsApiClient(Dio dio, {String baseUrl}) =
+      _IngredientsApiClient;
 
   factory IngredientsApiClient.create({String? apiUrl}) {
     final dio = Dio();
@@ -25,7 +23,6 @@ abstract class IngredientsApiClient {
     @Body() IngredientsRequestModel requestBody,
   );
 
-
   @POST('/api/ingredients/create')
   @MultiPart()
   Future<IngredientsRequestModel> createIngredient(
@@ -38,12 +35,8 @@ abstract class IngredientsApiClient {
   Future<IngredientsResponseModel> findAllIngredients();
 
   @GET('/api/ingredients/get/{id}')
-  Future<IngredientsResponseModel> getIngredientsByID(
-    @Path('id') int id
-  );
+  Future<IngredientsResponseModel> getIngredientsByID(@Path('id') int id);
 
   @DELETE('/api/ingredients/delete/{id}')
-  Future<IngredientsResponseModel> deleteIngredient(
-    @Path('id') int id
-  );
+  Future<IngredientsResponseModel> deleteIngredient(@Path('id') int id);
 }

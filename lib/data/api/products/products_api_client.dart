@@ -6,10 +6,7 @@ part 'products_api_client.g.dart';
 
 @RestApi(baseUrl: '')
 abstract class ProductsApiClient {
-  factory ProductsApiClient(
-    Dio dio,
-    {String baseUrl}
-  ) = _ProductsApiClient;
+  factory ProductsApiClient(Dio dio, {String baseUrl}) = _ProductsApiClient;
 
   factory ProductsApiClient.create({String? apiUrl}) {
     final dio = Dio();
@@ -60,22 +57,17 @@ abstract class ProductsApiClient {
   );
 
   @GET('/api/products/getPictures/{id}')
-  Future<void> getProductPicture(
-    @Path('id') int id
-  );
+  Future<void> getProductPicture(@Path('id') int id);
 
   @GET('/api/products/get/{id}')
-  Future<ProductsResponseModel> getProductByID(
-    @Path('id') int id
-  );
+  Future<ProductsResponseModel> getProductByID(@Path('id') int id);
 
   @GET('/api/products/findAll')
-  Future<List<ProductsResponseModel>> findAllOrders();
+  Future<List<ProductsResponseModel>> findAllProducts();
 
   @GET('/api/products/findAllIngredients/{id}')
   Future<List<IngredientsInProductResponseModel>> findAllIngredientsInProduct(
-    @Path('id') int id
-  );
+      @Path('id') int id);
 
   @DELETE('/api/products/deletePicture/{id}')
   Future<ProductsResponseModel> deleteProductPicture(
@@ -90,7 +82,5 @@ abstract class ProductsApiClient {
   );
 
   @DELETE('/api/products/delete/{id}')
-  Future<ProductsResponseModel> deleteProduct(
-    @Path('id') int id
-  );
+  Future<ProductsResponseModel> deleteProduct(@Path('id') int id);
 }

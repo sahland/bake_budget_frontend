@@ -6,10 +6,7 @@ part 'outgoings_api_client.g.dart';
 
 @RestApi(baseUrl: '')
 abstract class OutgoingsApiClient {
-  factory OutgoingsApiClient(
-    Dio dio,
-    {String baseUrl}
-  ) = _OutgoingsApiClient;
+  factory OutgoingsApiClient(Dio dio, {String baseUrl}) = _OutgoingsApiClient;
 
   factory OutgoingsApiClient.create({String? apiUrl}) {
     final dio = Dio();
@@ -38,12 +35,8 @@ abstract class OutgoingsApiClient {
   );
 
   @GET('/api/outgoings/get/{id}')
-  Future<OutgoingsResponseModel> getOutgoingByID(
-    @Path('id') int id
-  );
+  Future<OutgoingsResponseModel> getOutgoingByID(@Path('id') int id);
 
   @DELETE('/api/outgoings/delete/{id}')
-  Future<OutgoingsResponseModel> deleteOutgoing(
-    @Path('id') int id
-  );
+  Future<OutgoingsResponseModel> deleteOutgoing(@Path('id') int id);
 }

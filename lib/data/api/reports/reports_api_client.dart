@@ -6,10 +6,7 @@ part 'reports_api_client.g.dart';
 
 @RestApi(baseUrl: '')
 abstract class ReportsApiClient {
-  factory ReportsApiClient(
-    Dio dio,
-    {String baseUrl}
-  ) = _ReportsApiClient;
+  factory ReportsApiClient(Dio dio, {String baseUrl}) = _ReportsApiClient;
 
   factory ReportsApiClient.create({String? apiUrl}) {
     final dio = Dio();
